@@ -58,11 +58,8 @@ Ext.define('TeShopifyExt.model.WebserviceModel', {
             name: 'synctime'
         },
         {
-            name: 'ordersync',
+            name: 'issync',
             type: 'int'
-        },
-        {
-            name: 'ordersync_lastid'
         }
     ]
 });

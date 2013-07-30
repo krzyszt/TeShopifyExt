@@ -19,7 +19,7 @@ Ext.define('TeShopifyExt.view.SettingsView', {
 
     border: false,
     id: 'SettingsView',
-    margin: '50 0 0 10',
+    margin: '0 0 0 10',
     autoDestroy: false,
     activeTab: 0,
     plain: true,
@@ -85,10 +85,10 @@ Ext.define('TeShopifyExt.view.SettingsView', {
                                 {
                                     xtype: 'gridcolumn',
                                     renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
-                                        return (record.get('ordersync')) == 1 ?  '<span style="color: green;"><b>Synchronized</b></span>' : 'Unsynchronized';
+                                        return (record.get('issync')) == 1 ?  '<span style="color: green;"><b>Synchronized</b></span>' : 'Unsynchronized';
                                     },
                                     width: 130,
-                                    dataIndex: 'ordersync',
+                                    dataIndex: 'issync',
                                     text: 'Status'
                                 },
                                 {
@@ -96,6 +96,29 @@ Ext.define('TeShopifyExt.view.SettingsView', {
                                     dataIndex: 'syncdate',
                                     text: 'Sync Date',
                                     format: 'Y-m-d'
+                                }
+                            ],
+                            dockedItems: [
+                                {
+                                    xtype: 'toolbar',
+                                    dock: 'top',
+                                    ui: 'footer',
+                                    items: [
+                                        {
+                                            xtype: 'tbfill'
+                                        },
+                                        {
+                                            xtype: 'button',
+                                            margins: '0 20 0 0 ',
+                                            text: 'Add Shopify Shop',
+                                            listeners: {
+                                                click: {
+                                                    fn: me.onButtonClick,
+                                                    scope: me
+                                                }
+                                            }
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -105,6 +128,11 @@ Ext.define('TeShopifyExt.view.SettingsView', {
         });
 
         me.callParent(arguments);
+    },
+
+    onButtonClick: function(button, e, eOpts) {
+        var win = Ext.widget('shopifyshopwindow');
+        win.show();
     }
 
 });

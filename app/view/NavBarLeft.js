@@ -18,7 +18,7 @@ Ext.define('TeShopifyExt.view.NavBarLeft', {
     alias: 'widget.navbarleft',
 
     border: false,
-    margin: '50 0 0 20',
+    margin: '0 0 0 20',
     hideCollapseTool: true,
     store: 'MainTreeStore',
     folderSort: false,

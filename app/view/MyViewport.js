@@ -31,6 +31,49 @@ Ext.define('TeShopifyExt.view.MyViewport', {
             items: [
                 {
                     xtype: 'panel',
+                    region: 'north',
+                    border: false,
+                    height: 50,
+                    id: 'northPanel',
+                    layout: {
+                        align: 'stretch',
+                        type: 'hbox'
+                    },
+                    items: [
+                        {
+                            xtype: 'container',
+                            layout: {
+                                align: 'stretch',
+                                type: 'vbox'
+                            },
+                            items: [
+                                {
+                                    xtype: 'container',
+                                    flex: 1
+                                },
+                                {
+                                    xtype: 'container',
+                                    html: '<h3>TeShopify</h3>',
+                                    margin: '0 0 0 50'
+                                },
+                                {
+                                    xtype: 'container',
+                                    flex: 1
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'container',
+                            flex: 1
+                        },
+                        {
+                            xtype: 'container',
+                            flex: 1
+                        }
+                    ]
+                },
+                {
+                    xtype: 'panel',
                     region: 'center',
                     border: false,
                     id: 'centralPanel',
