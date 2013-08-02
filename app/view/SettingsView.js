@@ -120,7 +120,13 @@ Ext.define('TeShopifyExt.view.SettingsView', {
                                         }
                                     ]
                                 }
-                            ]
+                            ],
+                            listeners: {
+                                render: {
+                                    fn: me.onShopifyGridRender,
+                                    scope: me
+                                }
+                            }
                         }
                     ]
                 }
@@ -133,6 +139,10 @@ Ext.define('TeShopifyExt.view.SettingsView', {
     onButtonClick: function(button, e, eOpts) {
         var win = Ext.widget('shopifyshopwindow');
         win.show();
+    },
+
+    onShopifyGridRender: function(component, eOpts) {
+        component.getStore().load();
     }
 
 });

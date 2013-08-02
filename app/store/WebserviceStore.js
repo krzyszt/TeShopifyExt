@@ -29,6 +29,9 @@ Ext.define('TeShopifyExt.store.WebserviceStore', {
             storeId: 'WebservicesStore',
             proxy: {
                 type: 'ajax',
+                api: {
+                    read: '/shopify/webservice/list'
+                },
                 reader: {
                     type: 'json',
                     root: 'data'
