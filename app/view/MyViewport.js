@@ -17,7 +17,7 @@ Ext.define('TeShopifyExt.view.MyViewport', {
     extend: 'Ext.container.Viewport',
 
     requires: [
-        'TeShopifyExt.view.NavBarLeft'
+        'TeShopifyExt.view.ShopifyShopsTree'
     ],
 
     layout: {
@@ -94,7 +94,7 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                     collapsible: false,
                     items: [
                         {
-                            xtype: 'navbarleft',
+                            xtype: 'shopifyshopstree',
                             bodyBorder: false
                         }
                     ]

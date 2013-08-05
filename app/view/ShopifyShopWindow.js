@@ -256,7 +256,13 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
                         },
                         {
                             xtype: 'button',
-                            text: 'Save'
+                            text: 'Save',
+                            listeners: {
+                                click: {
+                                    fn: me.onButtonClick1,
+                                    scope: me
+                                }
+                            }
                         },
                         {
                             xtype: 'button',
@@ -277,8 +283,48 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
         me.callParent(arguments);
     },
 
+    onButtonClick1: function(button, e, eOpts) {
+        var panel = Ext.getCmp('ShopifyForm');
+        var form = panel.getForm();
+        if (form.isValid()) {
+            panel.setLoading('Saving ... ');
+            var id = panel.down('hiddenfield[name="id"]').getValue();
+            var url = '';                    
+            if ( id > 0) {
+                url = '/shopify/webservice/update';
+            } else {
+                url = '/shopify/webservice/create';
+            } 
+            form.submit({
+                url: url,
+                success: function(form,action){
+                    panel.setLoading(false);
+                    Ext.StoreMgr.lookup('WebserviceStore').reload();
+                },
+                failure: function(form, action){
+                    panel.setLoading(false);
+                    var msg  = action.result.msg; 
+                    Ext.Msg.show({
+                        msg: msg,
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.WARNING
+                    });
+
+                }
+            });
+        } else {
+            panel.setLoading(false);
+            Ext.Msg.show({
+                msg: 'Invalid data.',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+        }    
+    },
+
     onButtonClick: function(button, e, eOpts) {
         button.up('window').close();
+        Ext.StoreMgr.lookup('ShopifyShopsTreeStore').reload();
     }
 
 });

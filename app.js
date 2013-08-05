@@ -23,13 +23,14 @@ Ext.application({
         'WebserviceModel'
     ],
     stores: [
-        'MainTreeStore',
-        'WebserviceStore'
+        'WebserviceStore',
+        'ShopifyShopsTreeStore'
     ],
     views: [
         'MyViewport',
         'SettingsView',
-        'ShopifyShopWindow'
+        'ShopifyShopWindow',
+        'AddShopMenu'
     ],
     autoCreateViewport: true,
     controllers: [

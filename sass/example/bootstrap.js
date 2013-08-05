@@ -27,6 +27,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "ExtThemeNeptune.toolbar.Paging": [],
   "Ext.ux.event.Driver": [],
   "Ext.ux.ajax.XmlSimlet": [],
+  "TeShopifyExt.view.ShopifyShopsTree": [],
   "Ext.ux.dd.PanelFieldDragZone": [],
   "Ext.ux.DataView.DragSelector": [],
   "ExtThemeNeptune.toolbar.Toolbar": [],
@@ -52,6 +53,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.event.RecorderManager": [],
   "Ext.ux.ProgressBarPager": [],
   "Ext.ux.CellDragDrop": [],
+  "TeShopifyExt.store.ShopifyShopsTreeStore": [],
   "Ext.ux.statusbar.StatusBar": [
     "Ext.ux.StatusBar"
   ],
@@ -75,6 +77,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.TabScrollerMenu": [],
   "ExtThemeNeptune.menu.Separator": [],
   "Ext.ux.IFrame": [],
+  "TeShopifyExt.view.AddShopMenu": [],
   "Ext.ux.DataView.Draggable": [],
   "Ext.ux.TabCloseMenu": [],
   "Ext.ux.form.SearchField": [],
@@ -124,6 +127,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.ajax.XmlSimlet": [
     "simlet.xml"
   ],
+  "TeShopifyExt.view.ShopifyShopsTree": [
+    "widget.shopifyshopstree"
+  ],
   "Ext.ux.dd.PanelFieldDragZone": [],
   "Ext.ux.DataView.DragSelector": [],
   "ExtThemeNeptune.toolbar.Toolbar": [],
@@ -168,6 +174,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.CellDragDrop": [
     "plugin.celldragdrop"
   ],
+  "TeShopifyExt.store.ShopifyShopsTreeStore": [],
   "Ext.ux.statusbar.StatusBar": [
     "widget.statusbar"
   ],
@@ -204,6 +211,9 @@ Ext.ClassManager.addNameAliasMappings({
   "ExtThemeNeptune.menu.Separator": [],
   "Ext.ux.IFrame": [
     "widget.uxiframe"
+  ],
+  "TeShopifyExt.view.AddShopMenu": [
+    "widget.addshopmenu"
   ],
   "Ext.ux.DataView.Draggable": [],
   "Ext.ux.TabCloseMenu": [
