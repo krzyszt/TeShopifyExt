@@ -299,7 +299,8 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
                 url: url,
                 success: function(form,action){
                     panel.setLoading(false);
-                    Ext.StoreMgr.lookup('WebserviceStore').reload();
+                    Ext.StoreMgr.lookup('ShopifyShopsTreeStore').reload();
+                    button.up('window').close();
                 },
                 failure: function(form, action){
                     panel.setLoading(false);
@@ -309,22 +310,14 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
                         buttons: Ext.Msg.OK,
                         icon: Ext.Msg.WARNING
                     });
-
+                    button.up('window').close();
                 }
             });
-        } else {
-            panel.setLoading(false);
-            Ext.Msg.show({
-                msg: 'Invalid data.',
-                buttons: Ext.Msg.OK,
-                icon: Ext.Msg.WARNING
-            });
-        }    
+        }   
     },
 
     onButtonClick: function(button, e, eOpts) {
         button.up('window').close();
-        Ext.StoreMgr.lookup('ShopifyShopsTreeStore').reload();
     }
 
 });

@@ -20,6 +20,7 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
     border: false,
     id: 'ShopifyShopsTree',
     margin: '0 0 0 20',
+    bodyBorder: false,
     hideCollapseTool: true,
     hideHeaders: true,
     store: 'ShopifyShopsTreeStore',
@@ -44,7 +45,25 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
                     fn: me.onTreepanelItemContextMenu,
                     scope: me
                 }
-            }
+            },
+            dockedItems: [
+                {
+                    xtype: 'toolbar',
+                    dock: 'top',
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: 'Add Shopify Shop',
+                            listeners: {
+                                click: {
+                                    fn: me.onButtonClick,
+                                    scope: me
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
         });
 
         me.callParent(arguments);
@@ -58,6 +77,11 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
             mi.setText('Edit ' + name);
             e.preventDefault();
         } 
+    },
+
+    onButtonClick: function(button, e, eOpts) {
+        var win = Ext.widget('shopifyshopwindow');
+        win.show();
     }
 
 });

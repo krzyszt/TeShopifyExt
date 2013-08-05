@@ -94,8 +94,7 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                     collapsible: false,
                     items: [
                         {
-                            xtype: 'shopifyshopstree',
-                            bodyBorder: false
+                            xtype: 'shopifyshopstree'
                         }
                     ]
                 },
