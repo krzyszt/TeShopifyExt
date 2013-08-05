@@ -20,24 +20,35 @@ Ext.define('TeShopifyExt.view.NavBarLeft', {
     border: false,
     margin: '0 0 0 20',
     hideCollapseTool: true,
+    hideHeaders: true,
     store: 'MainTreeStore',
     folderSort: false,
     lines: false,
-    rootVisible: false,
     useArrows: true,
 
     initComponent: function() {
         var me = this;
 
         Ext.applyIf(me, {
+            root: {
+                name: 'Shopify Shops',
+                expanded: true
+            },
             viewConfig: {
-                border: false,
-                rootVisible: false,
-                listeners: {
-                    itemclick: {
-                        fn: me.onViewItemClick,
-                        scope: me
-                    }
+                border: false
+            },
+            columns: [
+                {
+                    xtype: 'treecolumn',
+                    dataIndex: 'name',
+                    text: 'MyTreeColumn',
+                    flex: 1
+                }
+            ],
+            listeners: {
+                itemcontextmenu: {
+                    fn: me.onTreepanelItemContextMenu,
+                    scope: me
                 }
             }
         });
@@ -45,15 +56,8 @@ Ext.define('TeShopifyExt.view.NavBarLeft', {
         me.callParent(arguments);
     },
 
-    onViewItemClick: function(dataview, record, item, index, e, eOpts) {
-        var main = Ext.getCmp('centralPanel');
-        main.removeAll();
-        var text = record.get('text');
-        var newtext = text.toString();
-        var l = newtext.replace(" ", "");
-        var dest = l.toLowerCase() + 'view';
-        var panel = Ext.widget(dest);
-        main.add(panel);
+    onTreepanelItemContextMenu: function(dataview, record, item, index, e, eOpts) {
+        console.log(record);
     }
 
 });

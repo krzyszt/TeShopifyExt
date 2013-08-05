@@ -60,6 +60,10 @@ Ext.define('TeShopifyExt.model.WebserviceModel', {
         {
             name: 'issync',
             type: 'int'
+        },
+        {
+            name: 'leaf',
+            type: 'boolean'
         }
     ]
 });

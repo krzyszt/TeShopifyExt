@@ -16,32 +16,30 @@
 Ext.define('TeShopifyExt.store.MainTreeStore', {
     extend: 'Ext.data.TreeStore',
 
+    requires: [
+        'TeShopifyExt.model.WebserviceModel'
+    ],
+
     constructor: function(cfg) {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
             autoLoad: true,
+            model: 'TeShopifyExt.model.WebserviceModel',
             storeId: 'MainTreeStore',
             root: {
-                expanded: true,
-                children: [
-                    {
-                        text: 'Shopify',
-                        expanded: true,
-                        children: [
-                            {
-                                text: 'Settings',
-                                leaf: true
-                            }
-                        ]
-                    }
-                ]
+                name: 'Shopify Shops',
+                expanded: true
             },
-            fields: [
-                {
-                    name: 'text'
+            proxy: {
+                type: 'ajax',
+                api: {
+                    read: 'shopify/webservice/list'
+                },
+                reader: {
+                    type: 'json'
                 }
-            ]
+            }
         }, cfg)]);
     }
 });

@@ -48,6 +48,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.DataView.Animated": [],
   "ExtThemeNeptune.resizer.Splitter": [],
   "Ext.ux.ajax.SimXhr": [],
+  "TeShopifyExt.controller.WebserviceController": [],
   "Ext.ux.event.RecorderManager": [],
   "Ext.ux.ProgressBarPager": [],
   "Ext.ux.CellDragDrop": [],
@@ -159,6 +160,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.DataView.Animated": [],
   "ExtThemeNeptune.resizer.Splitter": [],
   "Ext.ux.ajax.SimXhr": [],
+  "TeShopifyExt.controller.WebserviceController": [],
   "Ext.ux.event.RecorderManager": [
     "widget.eventrecordermanager"
   ],
