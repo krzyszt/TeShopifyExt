@@ -63,6 +63,38 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
                         }
                     ]
                 }
+            ],
+            columns: [
+                {
+                    xtype: 'treecolumn',
+                    width: 150,
+                    dataIndex: 'name',
+                    text: 'MyTreeColumn'
+                },
+                {
+                    xtype: 'actioncolumn',
+                    width: 40,
+                    align: 'center',
+                    items: [
+                        {
+                            handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                                var id = record.get('id');
+                                if (id) {
+                                    Ext.Ajax.request({
+                                        url: '/shopify/webservice/delete',
+                                        params: { id: id },
+                                        success: function(){
+                                            alert('success');
+                                            Ext.StoreMgr.lookup('ShopifyShopsTreeStore').reload();
+                                        }
+                                    });
+                                }
+                            },
+                            iconCls: 'bin',
+                            tooltip: 'Delete'
+                        }
+                    ]
+                }
             ]
         });
 
