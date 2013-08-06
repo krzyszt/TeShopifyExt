@@ -252,10 +252,8 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
                     ui: 'footer',
                     items: [
                         {
-                            xtype: 'tbfill'
-                        },
-                        {
                             xtype: 'button',
+                            margin: '0 20',
                             text: 'Save',
                             listeners: {
                                 click: {
@@ -263,6 +261,19 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
                                     scope: me
                                 }
                             }
+                        },
+                        {
+                            xtype: 'button',
+                            text: 'Delete',
+                            listeners: {
+                                click: {
+                                    fn: me.onButtonClick11,
+                                    scope: me
+                                }
+                            }
+                        },
+                        {
+                            xtype: 'tbfill'
                         },
                         {
                             xtype: 'button',
@@ -314,6 +325,36 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
                 }
             });
         }   
+    },
+
+    onButtonClick11: function(button, e, eOpts) {
+        var panel = Ext.getCmp('ShopifyForm');
+        var id = panel.down('hiddenfield[name="id"]').getValue();
+        var shopName = panel.down('textfield[name="name"]').getValue();
+        if (id > 0) {
+            Ext.Msg.show({
+                title: 'Delete Shopify Shop?',
+                msg: 'Are you sure you want to permanently delete the ' + shopName +' shop?',
+                buttons: Ext.Msg.YESNO,
+                fn: function(response){
+                    if ( response === 'yes') {
+                        panel.setLoading('Saving ... ');
+                        Ext.Ajax.request({
+                            url: '/shopify/webservice/delete',
+                            params: { id: id },
+                            success: function(){
+                                button.up('window').close();
+                                Ext.StoreMgr.lookup('ShopifyShopsTreeStore').reload();
+                                panel.setLoading(false);
+                            },
+                            failure: function(){
+                                panel.setLoading(false);
+                                button.up('window').close();
+                            }});
+                        }
+                    }    
+                });
+            }
     },
 
     onButtonClick: function(button, e, eOpts) {

@@ -40,12 +40,6 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
             viewConfig: {
                 border: false
             },
-            listeners: {
-                itemcontextmenu: {
-                    fn: me.onTreepanelItemContextMenu,
-                    scope: me
-                }
-            },
             dockedItems: [
                 {
                     xtype: 'toolbar',
@@ -67,53 +61,65 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
             columns: [
                 {
                     xtype: 'treecolumn',
-                    width: 150,
+                    width: 180,
                     dataIndex: 'name',
                     text: 'MyTreeColumn'
                 },
                 {
                     xtype: 'actioncolumn',
-                    width: 40,
+                    width: 24,
                     align: 'center',
                     items: [
                         {
                             handler: function(view, rowIndex, colIndex, item, e, record, row) {
                                 var id = record.get('id');
                                 if (id) {
-                                    Ext.Ajax.request({
-                                        url: '/shopify/webservice/delete',
-                                        params: { id: id },
-                                        success: function(){
-                                            alert('success');
-                                            Ext.StoreMgr.lookup('ShopifyShopsTreeStore').reload();
-                                        }
-                                    });
+                                    var win = Ext.widget('shopifyshopwindow');
+                                    win.show();
+                                    win.down('form').loadRecord(record);
                                 }
                             },
-                            iconCls: 'bin',
-                            tooltip: 'Delete'
+                            icon: '/resources/css/img/edit.png',
+                            iconCls: 'x-hidden',
+                            tooltip: 'Edit'
                         }
                     ]
                 }
-            ]
+            ],
+            listeners: {
+                itemmouseenter: {
+                    fn: me.onShopifyShopsTreeItemMouseEnter,
+                    scope: me
+                },
+                itemmouseleave: {
+                    fn: me.onShopifyShopsTreeItemMouseLeave,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
     },
 
-    onTreepanelItemContextMenu: function(dataview, record, item, index, e, eOpts) {
-        if ( record.get('leaf') === true){
-            var name = record.get('name');
-            Ext.widget('addshopmenu').showAt(e.getX(), e.getY());
-            var mi = Ext.ComponentQuery.query('addshopmenu menuitem[text="Edit Shopify Shop"]')[0];
-            mi.setText('Edit ' + name);
-            e.preventDefault();
-        } 
-    },
-
     onButtonClick: function(button, e, eOpts) {
         var win = Ext.widget('shopifyshopwindow');
         win.show();
+    },
+
+    onShopifyShopsTreeItemMouseEnter: function(dataview, record, item, index, e, eOpts) {
+        var icons = Ext.DomQuery.select('.x-action-col-icon', item);
+        if(record.get('id') > 0) {
+            Ext.each(icons, function(icon){
+                Ext.get(icon).removeCls('x-hidden');
+            });
+        }
+    },
+
+    onShopifyShopsTreeItemMouseLeave: function(dataview, record, item, index, e, eOpts) {
+        var icons = Ext.DomQuery.select('.x-action-col-icon', item);
+        Ext.each(icons, function(icon){
+            Ext.get(icon).addCls('x-hidden');
+        });
     }
 
 });

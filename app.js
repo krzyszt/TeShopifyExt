@@ -29,8 +29,7 @@ Ext.application({
     views: [
         'MyViewport',
         'SettingsView',
-        'ShopifyShopWindow',
-        'AddShopMenu'
+        'ShopifyShopWindow'
     ],
     autoCreateViewport: true,
     controllers: [
