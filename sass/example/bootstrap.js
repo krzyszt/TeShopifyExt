@@ -81,6 +81,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.DataView.Draggable": [],
   "Ext.ux.TabCloseMenu": [],
   "Ext.ux.form.SearchField": [],
+  "TeShopifyExt.store.NavTreeStore": [],
   "Ext.ux.dd.CellFieldDropZone": [],
   "Ext.ux.LiveSearchGridPanel": [],
   "Ext.ux.grid.filter.DateFilter": [],
@@ -222,6 +223,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.form.SearchField": [
     "widget.searchfield"
   ],
+  "TeShopifyExt.store.NavTreeStore": [],
   "Ext.ux.dd.CellFieldDropZone": [],
   "Ext.ux.LiveSearchGridPanel": [],
   "Ext.ux.grid.filter.DateFilter": [

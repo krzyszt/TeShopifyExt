@@ -17,7 +17,8 @@ Ext.define('TeShopifyExt.view.MyViewport', {
     extend: 'Ext.container.Viewport',
 
     requires: [
-        'TeShopifyExt.view.ShopifyShopsTree'
+        'TeShopifyExt.view.ShopifyShopsTree',
+        'TeShopifyExt.view.NavBarLeft'
     ],
 
     layout: {
@@ -88,13 +89,19 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                     id: 'westPanel',
                     width: 220,
                     layout: {
-                        type: 'fit'
+                        align: 'stretch',
+                        type: 'vbox'
                     },
                     collapsed: false,
                     collapsible: false,
                     items: [
                         {
-                            xtype: 'shopifyshopstree'
+                            xtype: 'shopifyshopstree',
+                            margin: '0 0 50 20'
+                        },
+                        {
+                            xtype: 'navbarleft',
+                            margin: '0 0 0 20'
                         }
                     ]
                 },

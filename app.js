@@ -24,12 +24,14 @@ Ext.application({
     ],
     stores: [
         'WebserviceStore',
-        'ShopifyShopsTreeStore'
+        'ShopifyShopsTreeStore',
+        'NavTreeStore'
     ],
     views: [
         'MyViewport',
         'SettingsView',
-        'ShopifyShopWindow'
+        'ShopifyShopWindow',
+        'NavBarLeft'
     ],
     autoCreateViewport: true,
     controllers: [
