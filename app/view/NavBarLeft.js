@@ -22,7 +22,6 @@ Ext.define('TeShopifyExt.view.NavBarLeft', {
     folderSort: false,
     lines: false,
     rootVisible: false,
-    useArrows: true,
 
     initComponent: function() {
         var me = this;
@@ -50,6 +49,9 @@ Ext.define('TeShopifyExt.view.NavBarLeft', {
         var l = newtext.replace(" ", "");
         var dest = l.toLowerCase() + 'view';
         var panel = Ext.widget(dest);
+        console.log(record.get('text'));
+        console.log(dest);
+        console.log(panel);
         main.add(panel);
     }
 

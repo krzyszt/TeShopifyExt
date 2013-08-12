@@ -34,7 +34,7 @@ Ext.application({
         'SettingsView',
         'ShopifyShopWindow',
         'NavBarLeft',
-        'ProductGrid'
+        'ProductsView'
     ],
     autoCreateViewport: true,
     controllers: [

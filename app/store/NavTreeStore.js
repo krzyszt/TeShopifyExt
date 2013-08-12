@@ -27,13 +27,7 @@ Ext.define('TeShopifyExt.store.NavTreeStore', {
                 children: [
                     {
                         text: 'Products',
-                        expanded: true,
-                        children: [
-                            {
-                                text: 'Products',
-                                leaf: true
-                            }
-                        ]
+                        leaf: true
                     }
                 ]
             },

@@ -29,6 +29,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.ajax.XmlSimlet": [],
   "TeShopifyExt.view.ShopifyShopsTree": [],
   "Ext.ux.dd.PanelFieldDragZone": [],
+  "TeShopifyExt.store.ProductStore": [],
   "Ext.ux.DataView.DragSelector": [],
   "ExtThemeNeptune.toolbar.Toolbar": [],
   "ExtThemeNeptune.tab.Tab": [],
@@ -60,6 +61,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.ajax.Simlet": [],
   "Ext.ux.SlidingPager": [],
   "Ext.ux.TabReorderer": [],
+  "TeShopifyExt.view.ProductsView": [],
   "Ext.ux.grid.filter.NumericFilter": [],
   "ExtThemeNeptune.layout.component.Dock": [],
   "TeShopifyExt.store.WebserviceStore": [],
@@ -67,6 +69,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.grid.menu.RangeMenu": [],
   "Ext.ux.event.Recorder": [],
   "Ext.ux.RowExpander": [],
+  "TeShopifyExt.model.ProductModel": [],
   "Ext.ux.event.Player": [],
   "ExtThemeNeptune.panel.Tool": [],
   "Ext.ux.ajax.SimManager": [],
@@ -77,7 +80,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.TabScrollerMenu": [],
   "ExtThemeNeptune.menu.Separator": [],
   "Ext.ux.IFrame": [],
-  "TeShopifyExt.view.AddShopMenu": [],
   "Ext.ux.DataView.Draggable": [],
   "Ext.ux.TabCloseMenu": [],
   "Ext.ux.form.SearchField": [],
@@ -92,7 +94,6 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.ux.TreePicker": [],
   "Ext.ux.ajax.JsonSimlet": [],
-  "TeShopifyExt.store.MainTreeStore": [],
   "ExtThemeNeptune.form.field.HtmlEditor": [],
   "Ext.ux.Spotlight": [],
   "Ext.ux.grid.FiltersFeature": [],
@@ -132,6 +133,7 @@ Ext.ClassManager.addNameAliasMappings({
     "widget.shopifyshopstree"
   ],
   "Ext.ux.dd.PanelFieldDragZone": [],
+  "TeShopifyExt.store.ProductStore": [],
   "Ext.ux.DataView.DragSelector": [],
   "ExtThemeNeptune.toolbar.Toolbar": [],
   "ExtThemeNeptune.tab.Tab": [],
@@ -184,6 +186,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "Ext.ux.SlidingPager": [],
   "Ext.ux.TabReorderer": [],
+  "TeShopifyExt.view.ProductsView": [
+    "widget.productsview"
+  ],
   "Ext.ux.grid.filter.NumericFilter": [
     "gridfilter.numeric"
   ],
@@ -195,6 +200,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.grid.menu.RangeMenu": [],
   "Ext.ux.event.Recorder": [],
   "Ext.ux.RowExpander": [],
+  "TeShopifyExt.model.ProductModel": [],
   "Ext.ux.event.Player": [],
   "ExtThemeNeptune.panel.Tool": [],
   "Ext.ux.ajax.SimManager": [],
@@ -212,9 +218,6 @@ Ext.ClassManager.addNameAliasMappings({
   "ExtThemeNeptune.menu.Separator": [],
   "Ext.ux.IFrame": [
     "widget.uxiframe"
-  ],
-  "TeShopifyExt.view.AddShopMenu": [
-    "widget.addshopmenu"
   ],
   "Ext.ux.DataView.Draggable": [],
   "Ext.ux.TabCloseMenu": [
@@ -245,7 +248,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.ajax.JsonSimlet": [
     "simlet.json"
   ],
-  "TeShopifyExt.store.MainTreeStore": [],
   "ExtThemeNeptune.form.field.HtmlEditor": [],
   "Ext.ux.Spotlight": [],
   "Ext.ux.grid.FiltersFeature": [
