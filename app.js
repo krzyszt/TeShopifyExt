@@ -20,18 +20,21 @@ Ext.Loader.setConfig({
 
 Ext.application({
     models: [
-        'WebserviceModel'
+        'WebserviceModel',
+        'ProductModel'
     ],
     stores: [
         'WebserviceStore',
         'ShopifyShopsTreeStore',
-        'NavTreeStore'
+        'NavTreeStore',
+        'ProductStore'
     ],
     views: [
         'MyViewport',
         'SettingsView',
         'ShopifyShopWindow',
-        'NavBarLeft'
+        'NavBarLeft',
+        'ProductGrid'
     ],
     autoCreateViewport: true,
     controllers: [
