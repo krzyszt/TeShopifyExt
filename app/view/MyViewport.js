@@ -17,7 +17,6 @@ Ext.define('TeShopifyExt.view.MyViewport', {
     extend: 'Ext.container.Viewport',
 
     requires: [
-        'TeShopifyExt.view.ProductsView',
         'TeShopifyExt.view.ShopifyShopsTree',
         'TeShopifyExt.view.NavBarLeft'
     ],
@@ -82,12 +81,7 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                     layout: {
                         type: 'fit'
                     },
-                    bodyBorder: false,
-                    items: [
-                        {
-                            xtype: 'productsview'
-                        }
-                    ]
+                    bodyBorder: false
                 },
                 {
                     xtype: 'panel',
