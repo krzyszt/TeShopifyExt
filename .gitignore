@@ -2,3 +2,4 @@ ext/
 uibuild
 build/
 .sencha
+sass
