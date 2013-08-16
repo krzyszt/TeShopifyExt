@@ -31,6 +31,7 @@ Ext.define('TeShopifyExt.store.ProductStore', {
                 type: 'ajax',
                 api: {
                     read: '/shopify/product/list',
+                    create: '/shopify/product/update',
                     update: '/shopify/product/update'
                 },
                 reader: {

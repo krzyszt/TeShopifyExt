@@ -96,8 +96,13 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                         },
                         {
                             xtype: 'container',
-                            height: 35,
+                            flex: 1,
                             margin: '100 0 0 0',
+                            layout: {
+                                align: 'stretch',
+                                pack: 'end',
+                                type: 'vbox'
+                            },
                             items: [
                                 {
                                     xtype: 'checkboxfield',

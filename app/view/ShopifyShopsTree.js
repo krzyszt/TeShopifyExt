@@ -41,7 +41,7 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
                 {
                     xtype: 'treecolumn',
                     border: false,
-                    width: 180,
+                    width: 160,
                     dataIndex: 'name',
                     text: 'MyTreeColumn'
                 },

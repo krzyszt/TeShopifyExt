@@ -100,7 +100,13 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                                 {
                                     xtype: 'button',
                                     scale: 'medium',
-                                    text: 'Save'
+                                    text: 'Save',
+                                    listeners: {
+                                        click: {
+                                            fn: me.onButtonClick1,
+                                            scope: me
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -108,6 +114,7 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                 },
                 {
                     xtype: 'form',
+                    id: 'ProductForm',
                     layout: {
                         type: 'auto'
                     },
@@ -170,6 +177,7 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                                             fieldLabel: 'Product Name',
                                             labelAlign: 'top',
                                             labelSeparator: ' ',
+                                            name: 'title',
                                             emptyText: 'eg. Unicorn crest short sleeve tree'
                                         },
                                         {
@@ -178,7 +186,8 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                                             margin: '10 0 0 0 ',
                                             fieldLabel: 'Description',
                                             labelAlign: 'top',
-                                            labelSeparator: ' '
+                                            labelSeparator: ' ',
+                                            name: 'body_html'
                                         },
                                         {
                                             xtype: 'container',
@@ -194,14 +203,16 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                                                     margin: '0 20 0 0',
                                                     fieldLabel: 'Product Type',
                                                     labelAlign: 'top',
-                                                    labelSeparator: ' '
+                                                    labelSeparator: ' ',
+                                                    name: 'product_type'
                                                 },
                                                 {
                                                     xtype: 'textfield',
                                                     flex: 1,
                                                     fieldLabel: 'Vendor',
                                                     labelAlign: 'top',
-                                                    labelSeparator: ' '
+                                                    labelSeparator: ' ',
+                                                    name: 'vendor'
                                                 }
                                             ]
                                         }
@@ -330,6 +341,11 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                                     ]
                                 }
                             ]
+                        },
+                        {
+                            xtype: 'hiddenfield',
+                            fieldLabel: 'Label',
+                            name: 'id'
                         }
                     ]
                 }
@@ -344,6 +360,39 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
         main.removeAll();
         var panel = Ext.widget('productsview');
         main.add(panel);
+    },
+
+    onButtonClick1: function(button, e, eOpts) {
+        var panel = Ext.getCmp('ProductForm');
+        var form = panel.getForm();
+        if (form.isValid()) {
+            panel.setLoading('Saving ... ');
+            var id = panel.down('hiddenfield[name="id"]').getValue();
+            var url = '';                    
+            if ( id > 0) {
+                url = '/shopify/product/update';
+            } else {
+                url = '/shopify/product/create';
+            } 
+            form.submit({
+                url: url,
+                success: function(form,action){
+                    panel.setLoading(false);
+                    Ext.StoreMgr.lookup('ProductStore').reload();
+
+                },
+                failure: function(form, action){
+                    panel.setLoading(false);
+                    var msg  = action.result.msg; 
+                    Ext.Msg.show({
+                        msg: msg,
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.WARNING
+                    });
+                    button.up('window').close();
+                }
+            });
+        }   
     }
 
 });
