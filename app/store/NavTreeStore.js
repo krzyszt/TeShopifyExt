@@ -27,19 +27,23 @@ Ext.define('TeShopifyExt.store.NavTreeStore', {
                 children: [
                     {
                         text: 'Dashboard',
-                        leaf: true
+                        leaf: true,
+                        iconCls: 'home'
                     },
                     {
                         text: 'Products',
-                        leaf: true
+                        leaf: true,
+                        iconCls: 'tags'
                     },
                     {
                         text: 'Customers',
-                        leaf: true
+                        leaf: true,
+                        iconCls: 'group'
                     },
                     {
                         text: 'Sales Orders',
-                        leaf: true
+                        leaf: true,
+                        iconCls: 'in'
                     }
                 ]
             },

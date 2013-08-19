@@ -44,186 +44,57 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
                     url: '/purchase/order/create',
                     items: [
                         {
-                            xtype: 'fieldcontainer',
-                            layout: {
-                                type: 'hbox'
-                            },
-                            items: [
-                                {
-                                    xtype: 'textfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    fieldLabel: 'Shopify Shop Name',
-                                    labelAlign: 'top',
-                                    name: 'name',
-                                    allowBlank: false
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                }
-                            ]
+                            xtype: 'textfield',
+                            margins: '0 20 0 0 ',
+                            fieldLabel: 'Shopify Shop Name',
+                            labelAlign: 'top',
+                            name: 'name',
+                            allowBlank: false
                         },
                         {
-                            xtype: 'fieldcontainer',
-                            layout: {
-                                type: 'hbox'
-                            },
-                            items: [
-                                {
-                                    xtype: 'textfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    fieldLabel: 'Shopify Shop Url',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te',
-                                    name: 'uri',
-                                    allowBlank: false
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                }
-                            ]
+                            xtype: 'textfield',
+                            margins: '0 20 0 0 ',
+                            fieldLabel: 'Shopify Shop Url',
+                            labelAlign: 'top',
+                            labelClsExtra: 'x-form-item-label-te',
+                            name: 'uri',
+                            allowBlank: false
                         },
                         {
-                            xtype: 'fieldcontainer',
-                            layout: {
-                                type: 'hbox'
-                            },
-                            items: [
-                                {
-                                    xtype: 'textfield',
-                                    flex: 1,
-                                    margin: '0 20 0 0',
-                                    fieldLabel: 'Api Key',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te',
-                                    name: 'apikey',
-                                    allowBlank: false
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                }
-                            ]
+                            xtype: 'textfield',
+                            margin: '0 20 0 0',
+                            fieldLabel: 'Api Key',
+                            labelAlign: 'top',
+                            labelClsExtra: 'x-form-item-label-te',
+                            name: 'apikey',
+                            allowBlank: false
                         },
                         {
-                            xtype: 'fieldcontainer',
-                            layout: {
-                                type: 'hbox'
-                            },
-                            items: [
-                                {
-                                    xtype: 'textfield',
-                                    flex: 1,
-                                    margin: '0 20 0 0',
-                                    fieldLabel: 'Shared Secret',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te',
-                                    name: 'sharedsecret'
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                }
-                            ]
+                            xtype: 'textfield',
+                            margin: '0 20 0 0',
+                            fieldLabel: 'Shared Secret',
+                            labelAlign: 'top',
+                            labelClsExtra: 'x-form-item-label-te',
+                            name: 'sharedsecret',
+                            allowBlank: false
                         },
                         {
-                            xtype: 'fieldcontainer',
-                            layout: {
-                                type: 'hbox'
-                            },
-                            items: [
-                                {
-                                    xtype: 'textfield',
-                                    flex: 1,
-                                    margin: '0 20 0 0',
-                                    fieldLabel: 'Password',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te',
-                                    name: 'password'
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                }
-                            ]
+                            xtype: 'textfield',
+                            margin: '0 20 0 0',
+                            fieldLabel: 'Password',
+                            labelAlign: 'top',
+                            labelClsExtra: 'x-form-item-label-te',
+                            name: 'password',
+                            allowBlank: false
                         },
                         {
-                            xtype: 'fieldcontainer',
-                            layout: {
-                                type: 'hbox'
-                            },
-                            items: [
-                                {
-                                    xtype: 'textareafield',
-                                    flex: 2,
-                                    margin: '0 20 0 0 ',
-                                    fieldLabel: 'Description',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te',
-                                    name: 'description',
-                                    fieldStyle: 'x-form-field-te'
-                                },
-                                {
-                                    xtype: 'hiddenfield',
-                                    flex: 1,
-                                    margins: '0 20 0 0 ',
-                                    labelAlign: 'top',
-                                    labelClsExtra: 'x-form-item-label-te'
-                                }
-                            ]
+                            xtype: 'textareafield',
+                            margin: '0 20 0 0 ',
+                            fieldLabel: 'Description',
+                            labelAlign: 'top',
+                            labelClsExtra: 'x-form-item-label-te',
+                            name: 'description',
+                            fieldStyle: 'x-form-field-te'
                         },
                         {
                             xtype: 'hiddenfield',

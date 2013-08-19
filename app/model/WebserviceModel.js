@@ -64,6 +64,12 @@ Ext.define('TeShopifyExt.model.WebserviceModel', {
         {
             name: 'leaf',
             type: 'boolean'
+        },
+        {
+            convert: function(v, rec) {
+                return 'cart';
+            },
+            name: 'iconCls'
         }
     ]
 });

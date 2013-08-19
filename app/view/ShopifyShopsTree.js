@@ -20,7 +20,6 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
     border: false,
     hidden: true,
     id: 'ShopifyShopsTree',
-    margin: '0 0 0 20',
     bodyBorder: false,
     hideCollapseTool: true,
     hideHeaders: true,
@@ -41,7 +40,7 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
                 {
                     xtype: 'treecolumn',
                     border: false,
-                    width: 160,
+                    width: 190,
                     dataIndex: 'name',
                     text: 'MyTreeColumn'
                 },

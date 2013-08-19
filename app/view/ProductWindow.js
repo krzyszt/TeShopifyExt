@@ -17,13 +17,12 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.productwindow',
 
-    margin: '0 20 0 10',
     autoScroll: true,
     layout: {
         align: 'stretch',
         type: 'vbox'
     },
-    bodyBorder: false,
+    bodyBorder: true,
 
     initComponent: function() {
         var me = this;
@@ -38,51 +37,31 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                     },
                     items: [
                         {
-                            xtype: 'container',
-                            width: 200,
-                            layout: {
-                                align: 'stretch',
-                                type: 'hbox'
-                            },
-                            items: [
-                                {
-                                    xtype: 'container',
-                                    width: 30
-                                },
-                                {
-                                    xtype: 'container',
-                                    flex: 1,
-                                    layout: {
-                                        align: 'stretch',
-                                        type: 'vbox'
-                                    },
-                                    items: [
-                                        {
-                                            xtype: 'container',
-                                            flex: 1
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            flex: 1,
-                                            html: '<a href="#"><h2>Products</h2></a>'
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            flex: 1
-                                        }
-                                    ]
-                                },
-                                {
-                                    xtype: 'container',
-                                    flex: 1
-                                }
-                            ]
-                        },
-                        {
                             xtype: 'toolbar',
                             flex: 1,
-                            height: 50,
+                            height: 52,
                             items: [
+                                {
+                                    xtype: 'button',
+                                    margin: '0 0 0 20',
+                                    iconCls: 'tags',
+                                    scale: 'medium',
+                                    text: 'Products',
+                                    listeners: {
+                                        click: {
+                                            fn: me.onButtonClick2,
+                                            scope: me
+                                        }
+                                    }
+                                },
+                                {
+                                    xtype: 'button',
+                                    disabled: true,
+                                    id: 'ProductButton',
+                                    margin: '0 0 0 5',
+                                    scale: 'large',
+                                    text: 'New Product'
+                                },
                                 {
                                     xtype: 'tbfill'
                                 },
@@ -99,6 +78,7 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                                 },
                                 {
                                     xtype: 'button',
+                                    margin: '0 20 0 0',
                                     scale: 'medium',
                                     text: 'Save',
                                     listeners: {
@@ -114,15 +94,20 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                 },
                 {
                     xtype: 'form',
+                    border: false,
                     id: 'ProductForm',
                     layout: {
-                        type: 'auto'
+                        align: 'stretch',
+                        type: 'vbox'
                     },
+                    bodyBorder: false,
                     items: [
                         {
                             xtype: 'container',
+                            style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
                             layout: {
                                 align: 'stretch',
+                                padding: '0 20 20 0',
                                 type: 'hbox'
                             },
                             items: [
@@ -222,6 +207,8 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                         },
                         {
                             xtype: 'container',
+                            padding: '0 20 20 0',
+                            style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
                             layout: {
                                 align: 'stretch',
                                 type: 'hbox'
@@ -353,6 +340,13 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
         });
 
         me.callParent(arguments);
+    },
+
+    onButtonClick2: function(button, e, eOpts) {
+        var main = Ext.getCmp('centralPanel');
+        main.removeAll();
+        var panel = Ext.widget('productsview');
+        main.add(panel);
     },
 
     onButtonClick: function(button, e, eOpts) {

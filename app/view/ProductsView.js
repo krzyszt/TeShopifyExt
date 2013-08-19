@@ -17,10 +17,12 @@ Ext.define('TeShopifyExt.view.ProductsView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.productsview',
 
-    margin: '0 20 0 10',
+    border: false,
     layout: {
-        type: 'fit'
+        align: 'stretch',
+        type: 'vbox'
     },
+    bodyBorder: false,
 
     initComponent: function() {
         var me = this;
@@ -30,8 +32,16 @@ Ext.define('TeShopifyExt.view.ProductsView', {
                 {
                     xtype: 'toolbar',
                     dock: 'top',
-                    height: 55,
+                    border: 1,
+                    height: 52,
                     items: [
+                        {
+                            xtype: 'button',
+                            margin: '0 0 0 20',
+                            iconCls: 'tags',
+                            scale: 'large',
+                            text: 'Products'
+                        },
                         {
                             xtype: 'tbfill'
                         },
@@ -53,6 +63,7 @@ Ext.define('TeShopifyExt.view.ProductsView', {
                         },
                         {
                             xtype: 'button',
+                            margin: '0 20 0 0 ',
                             scale: 'medium',
                             text: 'Add product',
                             listeners: {
@@ -68,6 +79,7 @@ Ext.define('TeShopifyExt.view.ProductsView', {
             items: [
                 {
                     xtype: 'tabpanel',
+                    style: 'borderTop: 1px solid #ededed;',
                     activeTab: 0,
                     plain: true,
                     items: [
@@ -82,8 +94,23 @@ Ext.define('TeShopifyExt.view.ProductsView', {
                                     store: 'ProductStore',
                                     columns: [
                                         {
-                                            xtype: 'rownumberer',
-                                            width: 30
+                                            xtype: 'actioncolumn',
+                                            width: 40,
+                                            align: 'center',
+                                            items: [
+                                                {
+                                                    handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                                                        var main = Ext.getCmp('centralPanel');
+                                                        main.removeAll();
+                                                        var panel = Ext.widget('productwindow');
+                                                        main.add(panel);
+                                                        panel.down('form').loadRecord(record);
+                                                        Ext.getCmp('ProductButton').setText(record.get('title'));
+                                                    },
+                                                    icon: '/resources/css/img/edit.png',
+                                                    tooltip: 'Edit Product'
+                                                }
+                                            ]
                                         },
                                         {
                                             xtype: 'gridcolumn',
@@ -107,6 +134,10 @@ Ext.define('TeShopifyExt.view.ProductsView', {
                                     listeners: {
                                         render: {
                                             fn: me.onProductGridRender,
+                                            scope: me
+                                        },
+                                        itemdblclick: {
+                                            fn: me.onProductGridItemDblClick,
                                             scope: me
                                         }
                                     }
@@ -134,6 +165,15 @@ Ext.define('TeShopifyExt.view.ProductsView', {
 
     onProductGridRender: function(component, eOpts) {
         component.getStore().load();
+    },
+
+    onProductGridItemDblClick: function(dataview, record, item, index, e, eOpts) {
+        var main = Ext.getCmp('centralPanel');
+        main.removeAll();
+        var panel = Ext.widget('productwindow');
+        main.add(panel);
+        panel.down('form').loadRecord(record);
+        Ext.getCmp('ProductButton').setText(record.get('title'));
     }
 
 });

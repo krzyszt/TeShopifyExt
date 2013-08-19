@@ -21,6 +21,7 @@ Ext.define('TeShopifyExt.view.MyViewport', {
         'TeShopifyExt.view.ShopifyShopsTree'
     ],
 
+    border: true,
     layout: {
         type: 'border'
     },
@@ -31,38 +32,26 @@ Ext.define('TeShopifyExt.view.MyViewport', {
         Ext.applyIf(me, {
             items: [
                 {
-                    xtype: 'panel',
+                    xtype: 'container',
                     region: 'north',
                     border: false,
-                    height: 40,
+                    height: 36,
                     id: 'northPanel',
-                    ui: 'header',
                     layout: {
-                        align: 'stretch',
-                        type: 'hbox'
+                        type: 'fit'
                     },
                     items: [
                         {
-                            xtype: 'container',
-                            layout: {
-                                align: 'stretch',
-                                type: 'vbox'
-                            },
+                            xtype: 'toolbar',
+                            border: false,
+                            ui: 'header',
                             items: [
                                 {
-                                    xtype: 'container',
-                                    html: '<h2>TeShopify</h2>',
-                                    margin: '0 0 0 50'
+                                    xtype: 'button',
+                                    margin: '0 20',
+                                    text: 'TeShopify'
                                 }
                             ]
-                        },
-                        {
-                            xtype: 'container',
-                            flex: 1
-                        },
-                        {
-                            xtype: 'container',
-                            flex: 1
                         }
                     ]
                 },
@@ -80,11 +69,13 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                     xtype: 'panel',
                     region: 'west',
                     id: 'westPanel',
+                    style: 'border: 1px solid #ededed;',
                     width: 220,
                     layout: {
                         align: 'stretch',
                         type: 'vbox'
                     },
+                    bodyBorder: false,
                     collapsed: false,
                     collapsible: false,
                     items: [
@@ -106,8 +97,8 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                             items: [
                                 {
                                     xtype: 'checkboxfield',
-                                    margin: '10 0 0 20',
-                                    boxLabel: 'Show Shopify Shops',
+                                    margin: '10 0 5 20',
+                                    boxLabel: 'My Shopify Shops',
                                     listeners: {
                                         change: {
                                             fn: me.onCheckboxfieldChange,
@@ -119,6 +110,10 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                         },
                         {
                             xtype: 'shopifyshopstree'
+                        },
+                        {
+                            xtype: 'container',
+                            height: 20
                         }
                     ]
                 }
