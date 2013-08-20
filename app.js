@@ -27,7 +27,8 @@ Ext.application({
         'WebserviceStore',
         'ShopifyShopsTreeStore',
         'NavTreeStore',
-        'ProductStore'
+        'ProductStore',
+        'OnlineProductStore'
     ],
     views: [
         'MyViewport',
@@ -35,7 +36,10 @@ Ext.application({
         'ShopifyShopWindow',
         'NavBarLeft',
         'ProductsView',
-        'ProductWindow'
+        'ProductWindow',
+        'OnlineProductsView',
+        'SelectShopify',
+        'ProductForm'
     ],
     autoCreateViewport: true,
     controllers: [

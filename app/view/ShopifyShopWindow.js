@@ -72,19 +72,19 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
                         {
                             xtype: 'textfield',
                             margin: '0 20 0 0',
-                            fieldLabel: 'Shared Secret',
+                            fieldLabel: 'Password',
                             labelAlign: 'top',
                             labelClsExtra: 'x-form-item-label-te',
-                            name: 'sharedsecret',
+                            name: 'password',
                             allowBlank: false
                         },
                         {
                             xtype: 'textfield',
                             margin: '0 20 0 0',
-                            fieldLabel: 'Password',
+                            fieldLabel: 'Shared Secret',
                             labelAlign: 'top',
                             labelClsExtra: 'x-form-item-label-te',
-                            name: 'password',
+                            name: 'sharedsecret',
                             allowBlank: false
                         },
                         {

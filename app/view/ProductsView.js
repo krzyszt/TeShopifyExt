@@ -34,6 +34,7 @@ Ext.define('TeShopifyExt.view.ProductsView', {
                     dock: 'top',
                     border: 1,
                     height: 52,
+                    style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
                     items: [
                         {
                             xtype: 'button',
@@ -49,15 +50,29 @@ Ext.define('TeShopifyExt.view.ProductsView', {
                             xtype: 'button',
                             margin: 0,
                             scale: 'medium',
-                            text: 'Export'
+                            text: ' Export'
                         },
                         {
                             xtype: 'button',
+                            margin: 0,
                             scale: 'medium',
                             text: 'Import'
                         },
                         {
                             xtype: 'button',
+                            margin: '0 0 0 40',
+                            scale: 'medium',
+                            text: 'Online Products',
+                            listeners: {
+                                click: {
+                                    fn: me.onButtonClick1,
+                                    scope: me
+                                }
+                            }
+                        },
+                        {
+                            xtype: 'button',
+                            margin: '0 40',
                             scale: 'medium',
                             text: 'Manage Inventory'
                         },
@@ -154,6 +169,10 @@ Ext.define('TeShopifyExt.view.ProductsView', {
         });
 
         me.callParent(arguments);
+    },
+
+    onButtonClick1: function(button, e, eOpts) {
+        Ext.widget('selectshopify').show();
     },
 
     onButtonClick: function(button, e, eOpts) {

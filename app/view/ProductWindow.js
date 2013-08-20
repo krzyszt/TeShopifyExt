@@ -17,6 +17,10 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.productwindow',
 
+    requires: [
+        'TeShopifyExt.view.ProductForm'
+    ],
+
     autoScroll: true,
     layout: {
         align: 'stretch',
@@ -31,6 +35,7 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
             items: [
                 {
                     xtype: 'container',
+                    style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
                     layout: {
                         align: 'stretch',
                         type: 'hbox'
@@ -40,6 +45,7 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                             xtype: 'toolbar',
                             flex: 1,
                             height: 52,
+                            style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
                             items: [
                                 {
                                     xtype: 'button',
@@ -93,248 +99,8 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                     ]
                 },
                 {
-                    xtype: 'form',
-                    border: false,
-                    id: 'ProductForm',
-                    layout: {
-                        align: 'stretch',
-                        type: 'vbox'
-                    },
-                    bodyBorder: false,
-                    items: [
-                        {
-                            xtype: 'container',
-                            style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
-                            layout: {
-                                align: 'stretch',
-                                padding: '0 20 20 0',
-                                type: 'hbox'
-                            },
-                            items: [
-                                {
-                                    xtype: 'container',
-                                    width: 300,
-                                    layout: {
-                                        align: 'stretch',
-                                        type: 'hbox'
-                                    },
-                                    items: [
-                                        {
-                                            xtype: 'container',
-                                            width: 40
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            flex: 1,
-                                            layout: {
-                                                align: 'stretch',
-                                                type: 'vbox'
-                                            },
-                                            items: [
-                                                {
-                                                    xtype: 'container',
-                                                    html: '<h3>Product Details</h3>'
-                                                },
-                                                {
-                                                    xtype: 'container',
-                                                    html: '<span>Write a name and description, and provide a type and vendor to categorize this product.</span>'
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            width: 40
-                                        }
-                                    ]
-                                },
-                                {
-                                    xtype: 'container',
-                                    flex: 1,
-                                    layout: {
-                                        align: 'stretch',
-                                        type: 'vbox'
-                                    },
-                                    items: [
-                                        {
-                                            xtype: 'textfield',
-                                            flex: 1,
-                                            margin: '20 0 0 0',
-                                            fieldLabel: 'Product Name',
-                                            labelAlign: 'top',
-                                            labelSeparator: ' ',
-                                            name: 'title',
-                                            emptyText: 'eg. Unicorn crest short sleeve tree'
-                                        },
-                                        {
-                                            xtype: 'textareafield',
-                                            flex: 1,
-                                            margin: '10 0 0 0 ',
-                                            fieldLabel: 'Description',
-                                            labelAlign: 'top',
-                                            labelSeparator: ' ',
-                                            name: 'body_html'
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            flex: 1,
-                                            layout: {
-                                                align: 'stretch',
-                                                type: 'hbox'
-                                            },
-                                            items: [
-                                                {
-                                                    xtype: 'textfield',
-                                                    flex: 1,
-                                                    margin: '0 20 0 0',
-                                                    fieldLabel: 'Product Type',
-                                                    labelAlign: 'top',
-                                                    labelSeparator: ' ',
-                                                    name: 'product_type'
-                                                },
-                                                {
-                                                    xtype: 'textfield',
-                                                    flex: 1,
-                                                    fieldLabel: 'Vendor',
-                                                    labelAlign: 'top',
-                                                    labelSeparator: ' ',
-                                                    name: 'vendor'
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            xtype: 'container',
-                            padding: '0 20 20 0',
-                            style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
-                            layout: {
-                                align: 'stretch',
-                                type: 'hbox'
-                            },
-                            items: [
-                                {
-                                    xtype: 'container',
-                                    width: 300,
-                                    layout: {
-                                        align: 'stretch',
-                                        type: 'hbox'
-                                    },
-                                    items: [
-                                        {
-                                            xtype: 'container',
-                                            width: 40
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            flex: 1,
-                                            layout: {
-                                                align: 'stretch',
-                                                type: 'vbox'
-                                            },
-                                            items: [
-                                                {
-                                                    xtype: 'container',
-                                                    html: '<h3>Inventory & variants</h3>'
-                                                },
-                                                {
-                                                    xtype: 'container',
-                                                    html: '<span>Manage inventory, and configure the options for selling this product.</span>'
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            width: 40
-                                        }
-                                    ]
-                                },
-                                {
-                                    xtype: 'container',
-                                    flex: 1,
-                                    items: [
-                                        {
-                                            xtype: 'container',
-                                            margin: '10 0 0 0',
-                                            layout: {
-                                                align: 'stretch',
-                                                type: 'hbox'
-                                            },
-                                            items: [
-                                                {
-                                                    xtype: 'textfield',
-                                                    flex: 1,
-                                                    margin: '0 20 0 0',
-                                                    fieldLabel: 'Price',
-                                                    labelAlign: 'top',
-                                                    labelSeparator: ' '
-                                                },
-                                                {
-                                                    xtype: 'textfield',
-                                                    flex: 1,
-                                                    fieldLabel: 'Compare at price',
-                                                    labelAlign: 'top',
-                                                    labelSeparator: ' '
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            margin: '10 0 0 0',
-                                            layout: {
-                                                align: 'stretch',
-                                                type: 'hbox'
-                                            },
-                                            items: [
-                                                {
-                                                    xtype: 'textfield',
-                                                    flex: 1,
-                                                    margin: '0 20 0 0',
-                                                    fieldLabel: 'SKU',
-                                                    labelAlign: 'top',
-                                                    labelSeparator: ' '
-                                                },
-                                                {
-                                                    xtype: 'textfield',
-                                                    flex: 1,
-                                                    fieldLabel: 'Barcode',
-                                                    labelAlign: 'top',
-                                                    labelSeparator: ' '
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            margin: '10 0 0 0',
-                                            items: [
-                                                {
-                                                    xtype: 'checkboxfield',
-                                                    boxLabel: 'Charge taxes',
-                                                    checked: true
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            xtype: 'container',
-                                            margin: '10 0 0 0',
-                                            items: [
-                                                {
-                                                    xtype: 'checkboxfield',
-                                                    boxLabel: 'Require a shipping address'
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            xtype: 'hiddenfield',
-                            fieldLabel: 'Label',
-                            name: 'id'
-                        }
-                    ]
+                    xtype: 'productform',
+                    flex: 1
                 }
             ]
         });
