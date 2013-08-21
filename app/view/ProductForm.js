@@ -19,6 +19,7 @@ Ext.define('TeShopifyExt.view.ProductForm', {
 
     border: false,
     id: 'ProductForm',
+    autoScroll: true,
     layout: {
         align: 'stretch',
         type: 'vbox'
@@ -249,7 +250,130 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                     items: [
                                         {
                                             xtype: 'checkboxfield',
-                                            boxLabel: 'Require a shipping address'
+                                            boxLabel: 'This product has multiple options',
+                                            listeners: {
+                                                change: {
+                                                    fn: me.onCheckboxfieldChange,
+                                                    scope: me
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'container',
+                                    height: 70,
+                                    hidden: true,
+                                    id: 'OptionsContainer',
+                                    margin: '10 0 0 0',
+                                    style: 'border: 1px solid #ededed; backgroundColor: #fff;',
+                                    layout: {
+                                        align: 'stretch',
+                                        type: 'hbox'
+                                    },
+                                    items: [
+                                        {
+                                            xtype: 'container',
+                                            flex: 1,
+                                            margin: '10 0 0 0',
+                                            layout: {
+                                                align: 'stretch',
+                                                type: 'hbox'
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'textfield',
+                                                    flex: 1,
+                                                    margin: '0 20 0 0',
+                                                    fieldLabel: 'Option 1',
+                                                    labelAlign: 'top',
+                                                    labelSeparator: ' '
+                                                },
+                                                {
+                                                    xtype: 'textfield',
+                                                    flex: 1,
+                                                    margin: '0 20 0 0',
+                                                    fieldLabel: 'Option 2',
+                                                    labelAlign: 'top',
+                                                    labelSeparator: ' '
+                                                },
+                                                {
+                                                    xtype: 'textfield',
+                                                    flex: 1,
+                                                    fieldLabel: 'Option 3',
+                                                    labelAlign: 'top',
+                                                    labelSeparator: ' '
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    xtype: 'container',
+                    padding: '0 20 20 0',
+                    style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
+                    layout: {
+                        align: 'stretch',
+                        type: 'hbox'
+                    },
+                    items: [
+                        {
+                            xtype: 'container',
+                            width: 300,
+                            layout: {
+                                align: 'stretch',
+                                type: 'hbox'
+                            },
+                            items: [
+                                {
+                                    xtype: 'container',
+                                    width: 40
+                                },
+                                {
+                                    xtype: 'container',
+                                    flex: 1,
+                                    layout: {
+                                        align: 'stretch',
+                                        type: 'vbox'
+                                    },
+                                    items: [
+                                        {
+                                            xtype: 'container',
+                                            html: '<h3>Images</h3>'
+                                        },
+                                        {
+                                            xtype: 'container',
+                                            html: '<span>Upload images of this product.</span>'
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'container',
+                                    width: 40
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'container',
+                            items: [
+                                {
+                                    xtype: 'container',
+                                    margin: '10 0 0 0',
+                                    items: [
+                                        {
+                                            xtype: 'filefield',
+                                            margin: '20 20 0 0',
+                                            buttonText: 'Choose Files ',
+                                            listeners: {
+                                                change: {
+                                                    fn: me.onFilefieldChange,
+                                                    scope: me
+                                                }
+                                            }
                                         }
                                     ]
                                 }
@@ -262,10 +386,29 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                     fieldLabel: 'Label',
                     name: 'id'
                 }
-            ]
+            ],
+            listeners: {
+                beforerender: {
+                    fn: me.onProductFormBeforeRender,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
+    },
+
+    onCheckboxfieldChange: function(field, newValue, oldValue, eOpts) {
+        if ( newValue === true) { Ext.getCmp('OptionsContainer').show();} else { Ext.getCmp('OptionsContainer').hide();} 
+    },
+
+    onFilefieldChange: function(filefield, value, eOpts) {
+
+    },
+
+    onProductFormBeforeRender: function(component, eOpts) {
+        var record = Ext.create('TeShopifyExt.model.ProductModel');
+        component.getForm().loadRecord(record);
     }
 
 });

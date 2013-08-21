@@ -16,6 +16,10 @@
 Ext.define('TeShopifyExt.model.ProductModel', {
     extend: 'Ext.data.Model',
 
+    uses: [
+        'TeShopifyExt.model.VariantModel'
+    ],
+
     fields: [
         {
             name: 'id',
@@ -53,5 +57,9 @@ Ext.define('TeShopifyExt.model.ProductModel', {
             name: 'tags',
             type: 'auto'
         }
-    ]
+    ],
+
+    hasMany: {
+        model: 'TeShopifyExt.model.VariantModel'
+    }
 });

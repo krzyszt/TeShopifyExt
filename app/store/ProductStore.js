@@ -24,14 +24,13 @@ Ext.define('TeShopifyExt.store.ProductStore', {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
-            autoSync: true,
             model: 'TeShopifyExt.model.ProductModel',
             storeId: 'ProductStore',
             proxy: {
                 type: 'ajax',
                 api: {
                     read: '/shopify/product/list',
-                    create: '/shopify/product/update',
+                    create: '/shopify/product/create',
                     update: '/shopify/product/update'
                 },
                 reader: {

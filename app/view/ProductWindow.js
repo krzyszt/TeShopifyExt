@@ -89,7 +89,7 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
                                     text: 'Save',
                                     listeners: {
                                         click: {
-                                            fn: me.onButtonClick1,
+                                            fn: me.onButtonClick3,
                                             scope: me
                                         }
                                     }
@@ -122,36 +122,20 @@ Ext.define('TeShopifyExt.view.ProductWindow', {
         main.add(panel);
     },
 
-    onButtonClick1: function(button, e, eOpts) {
+    onButtonClick3: function(button, e, eOpts) {
         var panel = Ext.getCmp('ProductForm');
         var form = panel.getForm();
+        var record = form.getRecord();
+        var store = Ext.StoreMgr.lookup('ProductStore');
+        var id = panel.down('hiddenfield[name="id"]').getValue();
         if (form.isValid()) {
             panel.setLoading('Saving ... ');
-            var id = panel.down('hiddenfield[name="id"]').getValue();
-            var url = '';                    
-            if ( id > 0) {
-                url = '/shopify/product/update';
-            } else {
-                url = '/shopify/product/create';
+            if ( id == 0) {
+                store.insert(0, record);
             } 
-            form.submit({
-                url: url,
-                success: function(form,action){
-                    panel.setLoading(false);
-                    Ext.StoreMgr.lookup('ProductStore').reload();
-
-                },
-                failure: function(form, action){
-                    panel.setLoading(false);
-                    var msg  = action.result.msg; 
-                    Ext.Msg.show({
-                        msg: msg,
-                        buttons: Ext.Msg.OK,
-                        icon: Ext.Msg.WARNING
-                    });
-                    button.up('window').close();
-                }
-            });
+            form.updateRecord(record);
+            store.sync();
+            panel.setLoading(false);
         }   
     }
 

@@ -21,14 +21,16 @@ Ext.Loader.setConfig({
 Ext.application({
     models: [
         'WebserviceModel',
-        'ProductModel'
+        'ProductModel',
+        'VariantModel'
     ],
     stores: [
         'WebserviceStore',
         'ShopifyShopsTreeStore',
         'NavTreeStore',
         'ProductStore',
-        'OnlineProductStore'
+        'OnlineProductStore',
+        'VariantStore'
     ],
     views: [
         'MyViewport',
