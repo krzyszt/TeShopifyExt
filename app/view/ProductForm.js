@@ -92,6 +92,7 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                     labelAlign: 'top',
                                     labelSeparator: ' ',
                                     name: 'title',
+                                    allowBlank: false,
                                     emptyText: 'eg. Unicorn crest short sleeve tree'
                                 },
                                 {
@@ -197,14 +198,16 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                             margin: '0 20 0 0',
                                             fieldLabel: 'Price',
                                             labelAlign: 'top',
-                                            labelSeparator: ' '
+                                            labelSeparator: ' ',
+                                            name: 'price'
                                         },
                                         {
                                             xtype: 'textfield',
                                             flex: 1,
                                             fieldLabel: 'Compare at price',
                                             labelAlign: 'top',
-                                            labelSeparator: ' '
+                                            labelSeparator: ' ',
+                                            name: 'compare_at_price'
                                         }
                                     ]
                                 },
@@ -222,14 +225,16 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                             margin: '0 20 0 0',
                                             fieldLabel: 'SKU',
                                             labelAlign: 'top',
-                                            labelSeparator: ' '
+                                            labelSeparator: ' ',
+                                            name: 'sku'
                                         },
                                         {
                                             xtype: 'textfield',
                                             flex: 1,
                                             fieldLabel: 'Barcode',
                                             labelAlign: 'top',
-                                            labelSeparator: ' '
+                                            labelSeparator: ' ',
+                                            name: 'barcode'
                                         }
                                     ]
                                 },
@@ -327,7 +332,13 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                                     displayField: 'name',
                                                     queryMode: 'local',
                                                     store: 'ProductOptionStore',
-                                                    valueField: 'id'
+                                                    valueField: 'id',
+                                                    listeners: {
+                                                        render: {
+                                                            fn: me.onComboboxRender,
+                                                            scope: me
+                                                        }
+                                                    }
                                                 },
                                                 {
                                                     xtype: 'toolbar',
@@ -390,7 +401,7 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                                     width: 200,
                                                     labelAlign: 'top',
                                                     labelSeparator: ' ',
-                                                    name: 'option1',
+                                                    name: 'option2',
                                                     displayField: 'name',
                                                     queryMode: 'local',
                                                     store: 'ProductOptionStore',
@@ -451,7 +462,7 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                                     width: 200,
                                                     labelAlign: 'top',
                                                     labelSeparator: ' ',
-                                                    name: 'option1',
+                                                    name: 'option3',
                                                     displayField: 'name',
                                                     queryMode: 'local',
                                                     store: 'ProductOptionStore',
@@ -629,6 +640,10 @@ Ext.define('TeShopifyExt.view.ProductForm', {
 
     onDisplayfieldRender1: function(component, eOpts) {
         component.setValue('<b>Option Values</b/>');
+    },
+
+    onComboboxRender: function(component, eOpts) {
+        component.getStore().load();
     },
 
     onButtonClick1: function(button, e, eOpts) {

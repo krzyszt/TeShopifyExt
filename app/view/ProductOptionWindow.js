@@ -43,17 +43,27 @@ Ext.define('TeShopifyExt.view.ProductOptionWindow', {
                         {
                             xtype: 'textfield',
                             fieldLabel: 'Internal Name',
-                            labelSeparator: ''
+                            labelSeparator: '',
+                            name: 'code'
                         },
                         {
                             xtype: 'textfield',
                             fieldLabel: 'Public Name',
-                            labelSeparator: ''
+                            labelSeparator: '',
+                            name: 'name'
                         },
                         {
                             xtype: 'textareafield',
                             fieldLabel: 'Values',
-                            labelSeparator: ''
+                            labelSeparator: '',
+                            name: 'values'
+                        },
+                        {
+                            xtype: 'hiddenfield',
+                            flex: 1,
+                            fieldLabel: 'Label',
+                            name: 'id',
+                            value: 0
                         }
                     ]
                 }
@@ -69,7 +79,13 @@ Ext.define('TeShopifyExt.view.ProductOptionWindow', {
                         },
                         {
                             xtype: 'button',
-                            text: 'Add'
+                            text: 'Add',
+                            listeners: {
+                                click: {
+                                    fn: me.onButtonClick,
+                                    scope: me
+                                }
+                            }
                         }
                     ]
                 }
@@ -77,6 +93,39 @@ Ext.define('TeShopifyExt.view.ProductOptionWindow', {
         });
 
         me.callParent(arguments);
+    },
+
+    onButtonClick: function(button, e, eOpts) {
+        var panel = Ext.getCmp('ProductOptionForm');
+        var form = panel.getForm();
+        if (form.isValid()) {
+            panel.setLoading('Saving ... ');
+            var id = panel.down('hiddenfield[name="id"]').getValue();
+            var url = '';                    
+            if ( id > 0) {
+                url = '/shopify/option/edit';
+            } else {
+                url = '/shopify/option/add';
+            } 
+            form.submit({
+                url: url,
+                success: function(form,action){
+                    panel.setLoading(false);
+                    Ext.StoreMgr.lookup('ProductOptionStore').reload();
+                    button.up('window').close();
+                },
+                failure: function(form, action){
+                    panel.setLoading(false);
+                    var msg  = action.result.msg; 
+                    Ext.Msg.show({
+                        msg: msg,
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.WARNING
+                    });
+                    button.up('window').close();
+                }
+            });
+        }   
     }
 
 });

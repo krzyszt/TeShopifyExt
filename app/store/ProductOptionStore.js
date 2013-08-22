@@ -16,48 +16,31 @@
 Ext.define('TeShopifyExt.store.ProductOptionStore', {
     extend: 'Ext.data.Store',
 
+    requires: [
+        'TeShopifyExt.model.ProductOptionModel'
+    ],
+
     constructor: function(cfg) {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
+            model: 'TeShopifyExt.model.ProductOptionModel',
             storeId: 'ProductOptionStore',
-            data: [
-                {
-                    id: 0,
-                    name: 'Title',
-                    position: 1
-                },
-                {
-                    id: 1,
-                    name: 'Color',
-                    position: 2
-                },
-                {
-                    id: 2,
-                    name: 'Size',
-                    position: 3
-                }
-            ],
             proxy: {
                 type: 'ajax',
+                api: {
+                    read: '/shopify/option/list',
+                    create: '/shopify/option/add',
+                    update: '/shopify/option/edit'
+                },
                 reader: {
+                    type: 'json',
+                    root: 'data'
+                },
+                writer: {
                     type: 'json'
                 }
-            },
-            fields: [
-                {
-                    name: 'id',
-                    type: 'int'
-                },
-                {
-                    name: 'name',
-                    type: 'string'
-                },
-                {
-                    name: 'position',
-                    type: 'int'
-                }
-            ]
+            }
         }, cfg)]);
     }
 });

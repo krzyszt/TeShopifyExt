@@ -84,7 +84,36 @@ Ext.define('TeShopifyExt.view.ProductOptionsView', {
                     items: [
                         {
                             xtype: 'panel',
-                            title: 'Existing Options'
+                            title: 'Existing Options',
+                            items: [
+                                {
+                                    xtype: 'gridpanel',
+                                    store: 'ProductOptionStore',
+                                    columns: [
+                                        {
+                                            xtype: 'gridcolumn',
+                                            dataIndex: 'name',
+                                            text: 'Name'
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            dataIndex: 'code',
+                                            text: 'Code'
+                                        },
+                                        {
+                                            xtype: 'gridcolumn',
+                                            dataIndex: 'type',
+                                            text: 'Type'
+                                        }
+                                    ],
+                                    listeners: {
+                                        render: {
+                                            fn: me.onGridpanelRender,
+                                            scope: me
+                                        }
+                                    }
+                                }
+                            ]
                         },
                         {
                             xtype: 'panel',
@@ -107,6 +136,10 @@ Ext.define('TeShopifyExt.view.ProductOptionsView', {
 
     onButtonClick: function(button, e, eOpts) {
         Ext.widget('productoptionwindow').show();
+    },
+
+    onGridpanelRender: function(component, eOpts) {
+        component.getStore().load();
     }
 
 });

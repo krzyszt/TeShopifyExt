@@ -22,7 +22,8 @@ Ext.application({
     models: [
         'WebserviceModel',
         'ProductModel',
-        'VariantModel'
+        'VariantModel',
+        'ProductOptionModel'
     ],
     stores: [
         'WebserviceStore',
