@@ -47,43 +47,51 @@ Ext.define('TeShopifyExt.view.ProductsView', {
                             xtype: 'tbfill'
                         },
                         {
-                            xtype: 'button',
-                            margin: 0,
-                            scale: 'medium',
-                            text: ' Export'
-                        },
-                        {
-                            xtype: 'button',
-                            margin: 0,
-                            scale: 'medium',
-                            text: 'Import'
-                        },
-                        {
-                            xtype: 'button',
-                            margin: '0 0 0 40',
-                            scale: 'medium',
-                            text: 'Online Products',
-                            listeners: {
-                                click: {
-                                    fn: me.onButtonClick1,
-                                    scope: me
-                                }
-                            }
-                        },
-                        {
-                            xtype: 'button',
-                            margin: '0 40',
-                            scale: 'medium',
-                            text: 'Manage Inventory'
-                        },
-                        {
-                            xtype: 'button',
-                            margin: '0 20 0 0 ',
+                            xtype: 'splitbutton',
+                            margin: '0 20',
                             scale: 'medium',
                             text: 'Add product',
+                            menu: {
+                                xtype: 'menu',
+                                width: 150,
+                                items: [
+                                    {
+                                        xtype: 'menuitem',
+                                        text: 'Manage Inventory'
+                                    },
+                                    {
+                                        xtype: 'menuitem',
+                                        text: 'Online Product',
+                                        listeners: {
+                                            click: {
+                                                fn: me.onMenuitemClick,
+                                                scope: me
+                                            }
+                                        }
+                                    },
+                                    {
+                                        xtype: 'menuitem',
+                                        text: 'Import Products'
+                                    },
+                                    {
+                                        xtype: 'menuitem',
+                                        text: 'Export Products'
+                                    },
+                                    {
+                                        xtype: 'menuitem',
+                                        text: 'Product Options',
+                                        listeners: {
+                                            click: {
+                                                fn: me.onMenuitemClick1,
+                                                scope: me
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
                             listeners: {
                                 click: {
-                                    fn: me.onButtonClick,
+                                    fn: me.onSplitbuttonClick,
                                     scope: me
                                 }
                             }
@@ -171,11 +179,18 @@ Ext.define('TeShopifyExt.view.ProductsView', {
         me.callParent(arguments);
     },
 
-    onButtonClick1: function(button, e, eOpts) {
+    onMenuitemClick: function(item, e, eOpts) {
         Ext.widget('selectshopify').show();
     },
 
-    onButtonClick: function(button, e, eOpts) {
+    onMenuitemClick1: function(item, e, eOpts) {
+        var main = Ext.getCmp('centralPanel');
+        main.removeAll();
+        var panel = Ext.widget('productoptionsview');
+        main.add(panel);
+    },
+
+    onSplitbuttonClick: function(button, e, eOpts) {
         var main = Ext.getCmp('centralPanel');
         main.removeAll();
         var panel = Ext.widget('productwindow');

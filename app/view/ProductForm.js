@@ -262,6 +262,7 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                 },
                                 {
                                     xtype: 'container',
+                                    hidden: true,
                                     id: 'OptionsContainer',
                                     margin: '10 0 0 0',
                                     style: 'border: 1px solid #ededed; backgroundColor: #fff;',
@@ -297,7 +298,7 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                                 {
                                                     xtype: 'displayfield',
                                                     flex: 1,
-                                                    margin: '0 10',
+                                                    margin: '0 60',
                                                     listeners: {
                                                         render: {
                                                             fn: me.onDisplayfieldRender1,
@@ -318,7 +319,7 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                             items: [
                                                 {
                                                     xtype: 'combobox',
-                                                    margin: '0 20 0 0',
+                                                    margin: 0,
                                                     width: 200,
                                                     labelAlign: 'top',
                                                     labelSeparator: ' ',
@@ -329,8 +330,28 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                                     valueField: 'id'
                                                 },
                                                 {
+                                                    xtype: 'toolbar',
+                                                    margin: '0 5',
+                                                    padding: 0,
+                                                    width: 45,
+                                                    items: [
+                                                        {
+                                                            xtype: 'button',
+                                                            width: 45,
+                                                            text: 'Add',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onButtonClick1,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
                                                     xtype: 'textfield',
                                                     flex: 1,
+                                                    margin: '0 0 0 20',
                                                     emptyText: 'Enter any number of options',
                                                     listeners: {
                                                         keydown: {
@@ -366,7 +387,6 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                             items: [
                                                 {
                                                     xtype: 'combobox',
-                                                    margin: '0 20 0 0',
                                                     width: 200,
                                                     labelAlign: 'top',
                                                     labelSeparator: ' ',
@@ -377,8 +397,28 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                                     valueField: 'id'
                                                 },
                                                 {
+                                                    xtype: 'toolbar',
+                                                    margin: '0 5',
+                                                    padding: 0,
+                                                    width: 45,
+                                                    items: [
+                                                        {
+                                                            xtype: 'button',
+                                                            width: 45,
+                                                            text: 'Add',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onButtonClick11,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
                                                     xtype: 'textfield',
                                                     flex: 1,
+                                                    margin: '0 0 0 20',
                                                     emptyText: 'Enter any number of options'
                                                 },
                                                 {
@@ -408,7 +448,6 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                             items: [
                                                 {
                                                     xtype: 'combobox',
-                                                    margin: '0 20 0 0',
                                                     width: 200,
                                                     labelAlign: 'top',
                                                     labelSeparator: ' ',
@@ -419,8 +458,28 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                                     valueField: 'id'
                                                 },
                                                 {
+                                                    xtype: 'toolbar',
+                                                    margin: '0 5',
+                                                    padding: 0,
+                                                    width: 45,
+                                                    items: [
+                                                        {
+                                                            xtype: 'button',
+                                                            width: 45,
+                                                            text: 'Add',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onButtonClick111,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
                                                     xtype: 'textfield',
                                                     flex: 1,
+                                                    margin: '0 0 0 20',
                                                     emptyText: 'Enter any number of options'
                                                 },
                                                 {
@@ -572,8 +631,20 @@ Ext.define('TeShopifyExt.view.ProductForm', {
         component.setValue('<b>Option Values</b/>');
     },
 
+    onButtonClick1: function(button, e, eOpts) {
+        Ext.widget('productoptionwindow').show();
+    },
+
     onTextfieldKeydown: function(textfield, e, eOpts) {
 
+    },
+
+    onButtonClick11: function(button, e, eOpts) {
+        Ext.widget('productoptionwindow').show();
+    },
+
+    onButtonClick111: function(button, e, eOpts) {
+        Ext.widget('productoptionwindow').show();
     },
 
     onButtonClick: function(button, e, eOpts) {

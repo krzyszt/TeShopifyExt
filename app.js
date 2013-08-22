@@ -42,7 +42,9 @@ Ext.application({
         'ProductWindow',
         'OnlineProductsView',
         'SelectShopify',
-        'ProductForm'
+        'ProductForm',
+        'ProductOptionWindow',
+        'ProductOptionsView'
     ],
     autoCreateViewport: true,
     controllers: [
