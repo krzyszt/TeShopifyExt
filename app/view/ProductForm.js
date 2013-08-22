@@ -262,47 +262,209 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                 },
                                 {
                                     xtype: 'container',
-                                    height: 70,
-                                    hidden: true,
                                     id: 'OptionsContainer',
                                     margin: '10 0 0 0',
                                     style: 'border: 1px solid #ededed; backgroundColor: #fff;',
                                     layout: {
                                         align: 'stretch',
-                                        type: 'hbox'
+                                        padding: '5 10 10 10',
+                                        type: 'vbox'
                                     },
                                     items: [
                                         {
                                             xtype: 'container',
-                                            flex: 1,
                                             margin: '10 0 0 0',
+                                            style: 'borderBottom: 1px solid #ededed;',
                                             layout: {
-                                                align: 'stretch',
+                                                padding: '5 0 0 5',
                                                 type: 'hbox'
                                             },
                                             items: [
                                                 {
-                                                    xtype: 'textfield',
-                                                    flex: 1,
+                                                    xtype: 'displayfield',
                                                     margin: '0 20 0 0',
-                                                    fieldLabel: 'Option 1',
+                                                    width: 200,
                                                     labelAlign: 'top',
-                                                    labelSeparator: ' '
+                                                    labelSeparator: ' ',
+                                                    name: 'option1',
+                                                    listeners: {
+                                                        render: {
+                                                            fn: me.onDisplayfieldRender,
+                                                            scope: me
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    xtype: 'displayfield',
+                                                    flex: 1,
+                                                    margin: '0 10',
+                                                    listeners: {
+                                                        render: {
+                                                            fn: me.onDisplayfieldRender1,
+                                                            scope: me
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            xtype: 'container',
+                                            id: 'Option1Container',
+                                            style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
+                                            layout: {
+                                                padding: 10,
+                                                type: 'hbox'
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'combobox',
+                                                    margin: '0 20 0 0',
+                                                    width: 200,
+                                                    labelAlign: 'top',
+                                                    labelSeparator: ' ',
+                                                    name: 'option1',
+                                                    displayField: 'name',
+                                                    queryMode: 'local',
+                                                    store: 'ProductOptionStore',
+                                                    valueField: 'id'
                                                 },
                                                 {
                                                     xtype: 'textfield',
                                                     flex: 1,
+                                                    emptyText: 'Enter any number of options',
+                                                    listeners: {
+                                                        keydown: {
+                                                            fn: me.onTextfieldKeydown,
+                                                            scope: me
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    xtype: 'toolbar',
+                                                    margin: '0 0 0 10',
+                                                    padding: 0,
+                                                    width: 30,
+                                                    items: [
+                                                        {
+                                                            xtype: 'button',
+                                                            width: 30,
+                                                            iconCls: 'bin'
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            xtype: 'container',
+                                            hidden: true,
+                                            id: 'Option2Container',
+                                            style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
+                                            layout: {
+                                                padding: 10,
+                                                type: 'hbox'
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'combobox',
                                                     margin: '0 20 0 0',
-                                                    fieldLabel: 'Option 2',
+                                                    width: 200,
                                                     labelAlign: 'top',
-                                                    labelSeparator: ' '
+                                                    labelSeparator: ' ',
+                                                    name: 'option1',
+                                                    displayField: 'name',
+                                                    queryMode: 'local',
+                                                    store: 'ProductOptionStore',
+                                                    valueField: 'id'
                                                 },
                                                 {
                                                     xtype: 'textfield',
                                                     flex: 1,
-                                                    fieldLabel: 'Option 3',
+                                                    emptyText: 'Enter any number of options'
+                                                },
+                                                {
+                                                    xtype: 'toolbar',
+                                                    margin: '0 0 0 10',
+                                                    padding: 0,
+                                                    width: 30,
+                                                    items: [
+                                                        {
+                                                            xtype: 'button',
+                                                            width: 30,
+                                                            iconCls: 'bin'
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            xtype: 'container',
+                                            hidden: true,
+                                            id: 'Option3Container',
+                                            style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
+                                            layout: {
+                                                padding: 10,
+                                                type: 'hbox'
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'combobox',
+                                                    margin: '0 20 0 0',
+                                                    width: 200,
                                                     labelAlign: 'top',
-                                                    labelSeparator: ' '
+                                                    labelSeparator: ' ',
+                                                    name: 'option1',
+                                                    displayField: 'name',
+                                                    queryMode: 'local',
+                                                    store: 'ProductOptionStore',
+                                                    valueField: 'id'
+                                                },
+                                                {
+                                                    xtype: 'textfield',
+                                                    flex: 1,
+                                                    emptyText: 'Enter any number of options'
+                                                },
+                                                {
+                                                    xtype: 'toolbar',
+                                                    margin: '0 0 0 10',
+                                                    padding: 0,
+                                                    width: 30,
+                                                    items: [
+                                                        {
+                                                            xtype: 'button',
+                                                            width: 30,
+                                                            iconCls: 'bin'
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            xtype: 'container',
+                                            id: 'AddOptionContainer',
+                                            margin: '10 0 10 0',
+                                            layout: {
+                                                type: 'fit'
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'toolbar',
+                                                    items: [
+                                                        {
+                                                            xtype: 'button',
+                                                            scale: 'medium',
+                                                            text: 'Add Another Option',
+                                                            listeners: {
+                                                                click: {
+                                                                    fn: me.onButtonClick,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'tbtext',
+                                                            text: 'e.g. Color, Size, Material'
+                                                        }
+                                                    ]
                                                 }
                                             ]
                                         }
@@ -400,6 +562,30 @@ Ext.define('TeShopifyExt.view.ProductForm', {
 
     onCheckboxfieldChange: function(field, newValue, oldValue, eOpts) {
         if ( newValue === true) { Ext.getCmp('OptionsContainer').show();} else { Ext.getCmp('OptionsContainer').hide();} 
+    },
+
+    onDisplayfieldRender: function(component, eOpts) {
+        component.setValue('<b>Option Name</b/>');
+    },
+
+    onDisplayfieldRender1: function(component, eOpts) {
+        component.setValue('<b>Option Values</b/>');
+    },
+
+    onTextfieldKeydown: function(textfield, e, eOpts) {
+
+    },
+
+    onButtonClick: function(button, e, eOpts) {
+        var cont1 = Ext.getCmp('Option1Container');
+        var cont2 = Ext.getCmp('Option2Container');
+        var cont3 = Ext.getCmp('Option3Container');
+        if (cont2.isHidden() && cont3.isHidden()) {
+            cont2.show();
+        } else if ((cont2.isHidden() === false) && cont3.isHidden()){
+            cont3.show();
+            Ext.getCmp('AddOptionContainer').hide();
+        }
     },
 
     onFilefieldChange: function(filefield, value, eOpts) {

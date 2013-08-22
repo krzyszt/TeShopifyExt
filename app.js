@@ -30,7 +30,8 @@ Ext.application({
         'NavTreeStore',
         'ProductStore',
         'OnlineProductStore',
-        'VariantStore'
+        'VariantStore',
+        'ProductOptionStore'
     ],
     views: [
         'MyViewport',
