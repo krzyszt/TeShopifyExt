@@ -17,7 +17,7 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
     extend: 'Ext.window.Window',
     alias: 'widget.shopifyshopwindow',
 
-    border: 0,
+    border: false,
     height: 500,
     id: 'UserWindow1',
     width: 600,
@@ -41,6 +41,7 @@ Ext.define('TeShopifyExt.view.ShopifyShopWindow', {
                         align: 'stretch',
                         type: 'vbox'
                     },
+                    bodyBorder: false,
                     url: '/purchase/order/create',
                     items: [
                         {

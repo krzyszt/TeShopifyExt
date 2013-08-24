@@ -30,7 +30,6 @@ Ext.define('TeShopifyExt.view.NavBarLeft', {
 
         Ext.applyIf(me, {
             viewConfig: {
-                ui: 'footer',
                 rootVisible: false,
                 listeners: {
                     itemclick: {

@@ -17,11 +17,8 @@ Ext.define('TeShopifyExt.view.ProductOptionWindow', {
     extend: 'Ext.window.Window',
     alias: 'widget.productoptionwindow',
 
-    height: 250,
-    width: 400,
-    layout: {
-        type: 'fit'
-    },
+    height: 300,
+    width: 500,
     title: 'Add A New Option',
     modal: true,
 
@@ -33,7 +30,9 @@ Ext.define('TeShopifyExt.view.ProductOptionWindow', {
                 {
                     xtype: 'form',
                     border: false,
+                    height: 300,
                     id: 'ProductOptionForm',
+                    autoScroll: true,
                     layout: {
                         align: 'stretch',
                         type: 'vbox'
@@ -44,23 +43,48 @@ Ext.define('TeShopifyExt.view.ProductOptionWindow', {
                             xtype: 'textfield',
                             fieldLabel: 'Internal Name',
                             labelSeparator: '',
-                            name: 'code'
+                            name: 'code',
+                            allowBlank: false
                         },
                         {
                             xtype: 'textfield',
                             fieldLabel: 'Public Name',
                             labelSeparator: '',
-                            name: 'name'
+                            name: 'name',
+                            allowBlank: false
                         },
                         {
-                            xtype: 'textareafield',
+                            xtype: 'dataview',
+                            hidden: true,
+                            id: 'OptionValuesView',
+                            tpl: [
+                                '<tpl for="."><div><p style="background-color:#97bd66; color: #fff; float:left; margin:5px; display:table; border-spacing:3px"><span style="display:table-cell; vertical-align:middle; padding:3px"> {code} </span><small style="display:table-cell;vertical-align:middle;padding: 2px;"><a href="#" title="Double Click To Remove"style="text-decoration: none; color: #fff"> x</a></small> </p></div></tpl>'
+                            ],
+                            itemSelector: 'div',
+                            store: 'OptionValueStore',
+                            listeners: {
+                                itemdblclick: {
+                                    fn: me.onOptionValuesViewItemDblClick,
+                                    scope: me
+                                }
+                            }
+                        },
+                        {
+                            xtype: 'textfield',
                             fieldLabel: 'Values',
                             labelSeparator: '',
-                            name: 'values'
+                            name: 'values',
+                            emptyText: 'Enter any number of options separated by a comma.',
+                            enableKeyEvents: true,
+                            listeners: {
+                                keyup: {
+                                    fn: me.onTextfieldKeyup,
+                                    scope: me
+                                }
+                            }
                         },
                         {
                             xtype: 'hiddenfield',
-                            flex: 1,
                             fieldLabel: 'Label',
                             name: 'id',
                             value: 0
@@ -89,14 +113,50 @@ Ext.define('TeShopifyExt.view.ProductOptionWindow', {
                         }
                     ]
                 }
-            ]
+            ],
+            listeners: {
+                close: {
+                    fn: me.onWindowClose,
+                    scope: me
+                }
+            }
         });
 
         me.callParent(arguments);
     },
 
+    onOptionValuesViewItemDblClick: function(dataview, record, item, index, e, eOpts) {
+        Ext.StoreMgr.lookup('OptionValueStore').removeAt(index);
+    },
+
+    onTextfieldKeyup: function(textfield, e, eOpts) {
+        var text = textfield.getValue();
+        if (text.charAt(text.length-1) == ','){
+            Ext.getCmp('OptionValuesView').show();
+            var optionRecord = Ext.create('TeShopifyExt.model.ProductOptionModel');
+            optionRecord.set('code','Test Size');
+            optionRecord.set('name','Test Name');
+            var optionStore = Ext.StoreMgr.lookup('ProductOptionStore');
+            optionStore.add(optionRecord);
+            var valueRecord = Ext.create('TeShopifyExt.model.OptionValueModel');
+            valueRecord.set('code',text.substring(0,text.length-1));
+            var valueStore = Ext.StoreMgr.lookup('OptionValueStore');
+            valueStore.add(valueRecord);
+            optionRecord.values().add(valueRecord);
+            textfield.setValue('');
+            Ext.getCmp('OptionValuesView').refresh();
+            Ext.Ajax.request({
+                url: 'shopify/option/create',
+                jsonData: optionRecord.getData(),
+                success: function(response, opts) {
+                    console.log('success');
+                }
+            });
+        }
+    },
+
     onButtonClick: function(button, e, eOpts) {
-        var panel = Ext.getCmp('ProductOptionForm');
+        var panel = button.up('form');
         var form = panel.getForm();
         if (form.isValid()) {
             panel.setLoading('Saving ... ');
@@ -126,6 +186,10 @@ Ext.define('TeShopifyExt.view.ProductOptionWindow', {
                 }
             });
         }   
+    },
+
+    onWindowClose: function(panel, eOpts) {
+        Ext.StoreMgr.lookup('OptionValueStore').removeAll();
     }
 
 });

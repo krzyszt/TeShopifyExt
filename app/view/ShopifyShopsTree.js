@@ -70,6 +70,7 @@ Ext.define('TeShopifyExt.view.ShopifyShopsTree', {
                     xtype: 'toolbar',
                     dock: 'bottom',
                     border: false,
+                    style: 'backgroundColor:#fbfbfb;',
                     items: [
                         {
                             xtype: 'tbfill'

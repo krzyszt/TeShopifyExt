@@ -23,7 +23,8 @@ Ext.application({
         'WebserviceModel',
         'ProductModel',
         'VariantModel',
-        'ProductOptionModel'
+        'ProductOptionModel',
+        'OptionValueModel'
     ],
     stores: [
         'WebserviceStore',
@@ -32,7 +33,8 @@ Ext.application({
         'ProductStore',
         'OnlineProductStore',
         'VariantStore',
-        'ProductOptionStore'
+        'ProductOptionStore',
+        'OptionValueStore'
     ],
     views: [
         'MyViewport',
@@ -44,8 +46,8 @@ Ext.application({
         'OnlineProductsView',
         'SelectShopify',
         'ProductForm',
-        'ProductOptionWindow',
-        'ProductOptionsView'
+        'ProductOptionsView',
+        'ProductOptionWindow'
     ],
     autoCreateViewport: true,
     controllers: [

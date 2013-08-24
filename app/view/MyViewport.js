@@ -35,21 +35,33 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                     xtype: 'container',
                     region: 'north',
                     border: false,
-                    height: 36,
+                    height: 44,
                     id: 'northPanel',
                     layout: {
-                        type: 'fit'
+                        align: 'stretch',
+                        type: 'hbox'
                     },
                     items: [
                         {
-                            xtype: 'toolbar',
-                            border: false,
-                            ui: 'header',
+                            xtype: 'container',
+                            margin: '0 40',
+                            layout: {
+                                align: 'stretch',
+                                type: 'vbox'
+                            },
                             items: [
                                 {
-                                    xtype: 'button',
-                                    margin: '0 20',
-                                    text: 'TeShopify'
+                                    xtype: 'container',
+                                    flex: 1
+                                },
+                                {
+                                    xtype: 'container',
+                                    flex: 1,
+                                    html: '<span style="color: #fff; font: italic bold 16px Georgia; ">TeShopify</span><span style="margin-left: 10px; font-size: 12px; color: #bfbfbf">Lightweight Integrated System for Shopify Users</span>'
+                                },
+                                {
+                                    xtype: 'container',
+                                    flex: 1
                                 }
                             ]
                         }
@@ -76,6 +88,7 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                         type: 'vbox'
                     },
                     bodyBorder: false,
+                    bodyStyle: 'backgroundColor:#fbfbfb;',
                     collapsed: false,
                     collapsible: false,
                     items: [
@@ -89,6 +102,7 @@ Ext.define('TeShopifyExt.view.MyViewport', {
                             xtype: 'container',
                             flex: 1,
                             margin: '100 0 0 0',
+                            style: 'bac',
                             layout: {
                                 align: 'stretch',
                                 pack: 'end',
