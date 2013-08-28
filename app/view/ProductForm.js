@@ -318,69 +318,144 @@ Ext.define('TeShopifyExt.view.ProductForm', {
                                             id: 'Option1Container',
                                             style: 'borderBottom: 1px solid #ededed; backgroundColor: #fafafa;',
                                             layout: {
+                                                align: 'stretch',
                                                 padding: 10,
-                                                type: 'hbox'
+                                                type: 'vbox'
                                             },
                                             items: [
                                                 {
-                                                    xtype: 'combobox',
-                                                    margin: 0,
-                                                    width: 200,
-                                                    labelAlign: 'top',
-                                                    labelSeparator: ' ',
-                                                    name: 'option1',
-                                                    displayField: 'name',
-                                                    queryMode: 'local',
-                                                    store: 'ProductOptionStore',
-                                                    valueField: 'id',
-                                                    listeners: {
-                                                        render: {
-                                                            fn: me.onComboboxRender,
-                                                            scope: me
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    xtype: 'toolbar',
-                                                    margin: '0 5',
-                                                    padding: 0,
-                                                    width: 45,
+                                                    xtype: 'container',
+                                                    id: 'SelectOption',
+                                                    layout: {
+                                                        type: 'hbox'
+                                                    },
                                                     items: [
                                                         {
-                                                            xtype: 'button',
-                                                            width: 45,
-                                                            text: 'Add',
+                                                            xtype: 'combobox',
+                                                            margin: 0,
+                                                            width: 200,
+                                                            labelAlign: 'top',
+                                                            labelSeparator: ' ',
+                                                            name: 'option1',
+                                                            displayField: 'name',
+                                                            queryMode: 'local',
+                                                            store: 'ProductOptionStore',
+                                                            valueField: 'id',
                                                             listeners: {
-                                                                click: {
-                                                                    fn: me.onButtonClick1,
+                                                                render: {
+                                                                    fn: me.onComboboxRender,
                                                                     scope: me
                                                                 }
                                                             }
+                                                        },
+                                                        {
+                                                            xtype: 'toolbar',
+                                                            margin: '0 5',
+                                                            padding: 0,
+                                                            width: 45,
+                                                            items: [
+                                                                {
+                                                                    xtype: 'button',
+                                                                    width: 45,
+                                                                    text: 'Add',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onButtonClick1,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
                                                         }
                                                     ]
                                                 },
                                                 {
-                                                    xtype: 'textfield',
-                                                    flex: 1,
-                                                    margin: '0 0 0 20',
-                                                    emptyText: 'Enter any number of options',
-                                                    listeners: {
-                                                        keydown: {
-                                                            fn: me.onTextfieldKeydown,
-                                                            scope: me
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    xtype: 'toolbar',
-                                                    margin: '0 0 0 10',
-                                                    padding: 0,
-                                                    width: 30,
+                                                    xtype: 'form',
+                                                    border: false,
+                                                    hidden: true,
+                                                    id: 'ProductOptionForm1',
+                                                    margin: '10 0 0 0 ',
+                                                    padding: 5,
+                                                    layout: {
+                                                        type: 'hbox'
+                                                    },
+                                                    bodyStyle: 'backgroundColor: #fafafa;',
                                                     items: [
                                                         {
-                                                            xtype: 'button',
+                                                            xtype: 'hiddenfield',
+                                                            fieldLabel: 'Label',
+                                                            name: 'option_id',
+                                                            value: 0
+                                                        },
+                                                        {
+                                                            xtype: 'textfield',
+                                                            id: 'NewOption',
+                                                            style: 'backgroundColor: #fafafa;',
+                                                            emptyText: 'e.g. Color,Size,Material',
+                                                            listeners: {
+                                                                blur: {
+                                                                    fn: me.onNewOptionBlur,
+                                                                    scope: me
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'toolbar',
+                                                            padding: 0,
                                                             width: 30,
-                                                            iconCls: 'bin'
+                                                            items: [
+                                                                {
+                                                                    xtype: 'button',
+                                                                    width: 30,
+                                                                    iconCls: 'bin',
+                                                                    listeners: {
+                                                                        click: {
+                                                                            fn: me.onButtonClick2,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            xtype: 'container',
+                                                            flex: 1,
+                                                            margin: '0 0 0 60',
+                                                            style: 'backgroundColor: #fafafa;',
+                                                            layout: {
+                                                                align: 'stretch',
+                                                                type: 'vbox'
+                                                            },
+                                                            items: [
+                                                                {
+                                                                    xtype: 'dataview',
+                                                                    id: 'OptionValuesView1',
+                                                                    tpl: [
+                                                                        '<tpl for="."><div><p style="background-color:#97bd66; color: #fff; float:left; margin:5px; display:table; border-spacing:3px"><span style="display:table-cell; vertical-align:middle; padding:3px"> {code} </span><small style="display:table-cell;vertical-align:middle;padding: 2px;"><a href="#" title="Double Click To Remove"style="text-decoration: none; color: #fff"> x</a></small> </p></div></tpl>'
+                                                                    ],
+                                                                    itemSelector: 'div',
+                                                                    store: 'OptionValueStore',
+                                                                    listeners: {
+                                                                        itemdblclick: {
+                                                                            fn: me.onOptionValuesViewItemDblClick1,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    xtype: 'textfield',
+                                                                    labelSeparator: '',
+                                                                    name: 'values',
+                                                                    emptyText: 'Enter any number of options separated by a comma.',
+                                                                    enableKeyEvents: true,
+                                                                    listeners: {
+                                                                        keyup: {
+                                                                            fn: me.onTextfieldKeyup1,
+                                                                            scope: me
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
                                                         }
                                                     ]
                                                 }
@@ -647,11 +722,86 @@ Ext.define('TeShopifyExt.view.ProductForm', {
     },
 
     onButtonClick1: function(button, e, eOpts) {
-        Ext.widget('productoptionwindow').show();
+        Ext.getCmp('ProductOptionForm1').show();
+        Ext.getCmp('SelectOption').hide();
     },
 
-    onTextfieldKeydown: function(textfield, e, eOpts) {
+    onNewOptionBlur: function(component, e, eOpts) {
+        var name = component.getValue();
+        component.setLoading('Saving ... ');
+        Ext.Ajax.request({
+            url: 'shopify/option/add',
+            params: { name: name, id: 0},
+            success: function(response){
+                Ext.StoreMgr.lookup('ProductOptionStore').reload();
+                Ext.getCmp('ProductOptionForm1').down('hiddenfield name="option_id"').setValue(id);
+                component.setLoading(false);
+                component.setReadOnly(true);
+            },
+            failure: function(response){
+                component.setLoading(false);
+                component.setDisabled(true);
+                var msg  = '';
+                Ext.Msg.show({
+                    msg: msg,
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.Msg.WARNING
+                });
+            }
+        });
+    },
 
+    onButtonClick2: function(button, e, eOpts) {
+        var id = Ext.getCmp('ProductOptionForm1').down('hiddenfield name="option_id"').getValue();
+        component.setLoading('Saving ... ');
+        Ext.Ajax.request({
+            url: 'shopify/option/delete',
+            params: { id: id},
+            success: function(){
+                Ext.StoreMgr.lookup('ProductOptionStore').reload();
+                component.setLoading(false);
+                component.setReadOnly(false);
+            },
+            failure: function(response){
+                component.setLoading(false);
+                var msg  = '';
+                Ext.Msg.show({
+                    msg: msg,
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.Msg.WARNING
+                });
+            }
+        });
+    },
+
+    onOptionValuesViewItemDblClick1: function(dataview, record, item, index, e, eOpts) {
+        Ext.StoreMgr.lookup('OptionValueStore').removeAt(index);
+    },
+
+    onTextfieldKeyup1: function(textfield, e, eOpts) {
+        var text = textfield.getValue();
+        if (text.charAt(text.length-1) == ','){
+            Ext.getCmp('OptionValuesView1').show();
+            var optionRecord = Ext.create('TeShopifyExt.model.ProductOptionModel');
+            optionRecord.set('code','Test Size');
+            optionRecord.set('name','Test Name');
+            var optionStore = Ext.StoreMgr.lookup('ProductOptionStore');
+            optionStore.add(optionRecord);
+            var valueRecord = Ext.create('TeShopifyExt.model.OptionValueModel');
+            valueRecord.set('code',text.substring(0,text.length-1));
+            var valueStore = Ext.StoreMgr.lookup('OptionValueStore');
+            valueStore.add(valueRecord);
+            optionRecord.values().add(valueRecord);
+            textfield.setValue('');
+            Ext.getCmp('OptionValuesView').refresh();
+            Ext.Ajax.request({
+                url: 'shopify/option/create',
+                jsonData: optionRecord.getData(),
+                success: function(response, opts) {
+                    console.log('success');
+                }
+            });
+        }
     },
 
     onButtonClick11: function(button, e, eOpts) {

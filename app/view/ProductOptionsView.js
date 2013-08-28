@@ -92,18 +92,49 @@ Ext.define('TeShopifyExt.view.ProductOptionsView', {
                                     columns: [
                                         {
                                             xtype: 'gridcolumn',
+                                            align: 'center',
                                             dataIndex: 'name',
                                             text: 'Name'
                                         },
                                         {
                                             xtype: 'gridcolumn',
+                                            align: 'center',
                                             dataIndex: 'code',
                                             text: 'Code'
                                         },
                                         {
                                             xtype: 'gridcolumn',
+                                            align: 'center',
                                             dataIndex: 'type',
                                             text: 'Type'
+                                        },
+                                        {
+                                            xtype: 'actioncolumn',
+                                            width: 40,
+                                            align: 'center',
+                                            items: [
+                                                {
+                                                    handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                                                        Ext.Ajax.request({
+                                                            url: 'shopify/option/delete',
+                                                            params: { id: record.get('id')},
+                                                            success: function(){
+                                                                Ext.StoreMgr.lookup('ProductOptionStore').reload();
+                                                            },
+                                                            failure: function(response){
+                                                                var msg  = '';
+                                                                Ext.Msg.show({
+                                                                    msg: msg,
+                                                                    buttons: Ext.Msg.OK,
+                                                                    icon: Ext.Msg.WARNING
+                                                                });
+                                                            }
+                                                        });
+                                                    },
+                                                    iconCls: 'bin',
+                                                    tooltip: 'Delete'
+                                                }
+                                            ]
                                         }
                                     ],
                                     listeners: {

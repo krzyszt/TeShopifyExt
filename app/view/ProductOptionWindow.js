@@ -41,21 +41,20 @@ Ext.define('TeShopifyExt.view.ProductOptionWindow', {
                     items: [
                         {
                             xtype: 'textfield',
-                            fieldLabel: 'Internal Name',
+                            fieldLabel: 'Internal Code',
                             labelSeparator: '',
                             name: 'code',
                             allowBlank: false
                         },
                         {
                             xtype: 'textfield',
-                            fieldLabel: 'Public Name',
+                            fieldLabel: 'Name',
                             labelSeparator: '',
                             name: 'name',
                             allowBlank: false
                         },
                         {
                             xtype: 'dataview',
-                            hidden: true,
                             id: 'OptionValuesView',
                             tpl: [
                                 '<tpl for="."><div><p style="background-color:#97bd66; color: #fff; float:left; margin:5px; display:table; border-spacing:3px"><span style="display:table-cell; vertical-align:middle; padding:3px"> {code} </span><small style="display:table-cell;vertical-align:middle;padding: 2px;"><a href="#" title="Double Click To Remove"style="text-decoration: none; color: #fff"> x</a></small> </p></div></tpl>'
